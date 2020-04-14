@@ -1,0 +1,33 @@
+.main{
+	min-height:100vh;
+} 
+.footerBody{
+	margin: 0;
+}
+.footBox{
+	position : absolute;
+	left:0px;
+	bottom:0px;
+	width: 100%;
+	text-align: center;
+	background-color: #000000;
+	
+}
+
+.one {
+	color: #e4e4e4;
+	padding: 15px 0 0;
+	font-size: 13px;
+}
+
+.two{
+	color: #e4e4e4;
+	padding: 3px 0;
+	font-size: 13px;
+}
+
+.Copyright{
+	color: #e4e4e4;
+	padding: 0 0 15px;
+	font-size: 13px;
+}

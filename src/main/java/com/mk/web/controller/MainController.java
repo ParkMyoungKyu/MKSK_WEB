@@ -1,9 +1,5 @@
 package com.mk.web.controller;
 
-import java.net.URL;
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,8 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.mk.web.dto.JusoDTO;
 
 @Controller
 public class MainController {
@@ -26,7 +20,7 @@ public class MainController {
 		return "main";
 	}
 
-	@RequestMapping(value = "menuMove")
+	@RequestMapping(value = "menuMove", method = RequestMethod.POST)
 	public String menuMove(HttpServletRequest request,Model model) {
 		String command = request.getParameter("command");
 		String move = "";

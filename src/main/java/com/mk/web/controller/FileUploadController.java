@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 @Controller
 public class FileUploadController {
@@ -23,13 +22,6 @@ public class FileUploadController {
 		
 		int size = 10*1024*1024;
 		
-		try {
-			com.oreilly.servlet.MultipartRequest multi = new com.oreilly.servlet.MultipartRequest(request, fileTest , size, "utf-8", new DefaultFileRenamePolicy());
-			
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}		
 		return "fileEnd";
 	}
 	

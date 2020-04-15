@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="css/header.css" type="text/css">
 </head>
 <body>
-	<div id="siteName"><a href="main.do">--------</a></div>
+	<div id="siteName"><a href="main.do">WebSite</a></div>
 	<hr>
 </body>
 </html>

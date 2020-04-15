@@ -8,6 +8,9 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="css/main.css" type="text/css">
+<script src="js/clock.js" defer="defer"></script>
+<script src="js/gretting.js" defer="defer"></script>
 <script type="text/javascript">
 
 	$(document).ready(function(){
@@ -33,16 +36,22 @@
 </head>
 <%@ include file="common/header.jsp" %>
 	<body>
+		<div class="js-clock">
+			<h1 class="rel-time">00:00</h1>
+		</div>
+		<form class="js-form form">
+			<input type="text" placeholder="What is your name?">
+		</form>
+		<h4 class="js-greetings greetings">aaa</h4>
+		
+		
+		
 		<div class="main">
 			<button id="dialog">dialog</button>
 			<button id="juso">도로명 주소 API</button>
 			<button id="jsonTest">jsonTest</button>
-			<button id="fileUpload">FileUpload</button>
+			<!-- <button id="fileUpload">FileUpload</button> -->
 			<button id="weather">날씨 예보 API</button>
-			<button id="btn">button</button>
-			<button id="btn">button</button>
-			<button id="btn">button</button>
-			<button id="btn">button</button>
 		</div>
 	</body>
 <%@ include file="common/footer.jsp" %>

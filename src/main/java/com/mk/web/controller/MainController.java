@@ -20,7 +20,7 @@ public class MainController {
 		return "main";
 	}
 
-	@RequestMapping(value = "menuMove", method = RequestMethod.POST)
+	@RequestMapping(value = "menuMove")
 	public String menuMove(HttpServletRequest request,Model model) {
 		String command = request.getParameter("command");
 		String move = "";

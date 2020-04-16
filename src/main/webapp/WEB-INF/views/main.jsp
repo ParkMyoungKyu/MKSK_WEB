@@ -9,6 +9,7 @@
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="css/main.css" type="text/css">
+<script src="js/todo.js" defer="defer"></script>
 <script src="js/clock.js" defer="defer"></script>
 <script src="js/gretting.js" defer="defer"></script>
 <script type="text/javascript">
@@ -42,9 +43,11 @@
 		<form class="js-form form">
 			<input type="text" placeholder="What is your name?">
 		</form>
-		<h4 class="js-greetings greetings">aaa</h4>
-		
-		
+		<h4 class="js-greetings greetings"></h4>
+		<form class="js-toDoForm">
+			<input type="text" placeholder="Write a to do">
+		</form>
+		<ul class="js-toDoList"></ul>	
 		
 		<div class="main">
 			<button id="dialog">dialog</button>

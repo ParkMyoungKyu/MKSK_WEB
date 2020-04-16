@@ -4,8 +4,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
@@ -14,6 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mk.web.dto.WeatherDTO;
@@ -22,17 +29,17 @@ import com.mk.web.dto.WeatherDTO;
 public class WeatherController {
 		
 	final Logger logger = LoggerFactory.getLogger(getClass());
-	
+	@ResponseBody
 	@RequestMapping(value = "weatherSearch")
-	public void weatherSearch(WeatherDTO weatherDTO, HttpServletResponse response, Model model) throws IOException {
-		 WeatherDTO weatherDto = new WeatherDTO();
+	public String weatherSearch(WeatherDTO weatherDto, HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
 	      SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMdd");
 	      SimpleDateFormat format2 = new SimpleDateFormat("HH");
 	      
 	      Date time = new Date();
 	      weatherDto.setBase_date(format1.format(time));
-	      
+	      System.out.println(format2.format(time));
 	      int nowTime = Integer.parseInt(format2.format(time));
+	      System.out.println(nowTime);
 	      if(2 <= nowTime  && nowTime < 5)    weatherDto.setBase_time("0200");
 	      if(5 <= nowTime  && nowTime < 8)    weatherDto.setBase_time("0500");
 	      if(8 <= nowTime  && nowTime < 11)   weatherDto.setBase_time("0800");
@@ -40,7 +47,8 @@ public class WeatherController {
 	      if(14 <= nowTime &&  nowTime < 17)  weatherDto.setBase_time("1400");
 	      if(17 <= nowTime &&  nowTime < 20)  weatherDto.setBase_time("1700");
 	      if(20 <= nowTime &&  nowTime < 23)  weatherDto.setBase_time("2000");
-	      if(23 <= nowTime &&  nowTime < 2)    weatherDto.setBase_time("2300");
+	      if(23 <= nowTime &&  nowTime < 2 || nowTime == 0)    weatherDto.setBase_time("2300");
+	      System.out.println(weatherDto.getBase_date() +"   "+ weatherDto.getBase_time() );
 	      
 	      String serviceKey = "w7%2Fp3SnRp8NhmFmt1jm4Q8x1aKjZsP2k%2BnrLjesD3Ptag7iKvo2pDt8d4spRu%2Bm29XKt3mM1hfmUcKYqbi2F%2Fw%3D%3D";
 	      String numOfRows  = "300";
@@ -70,11 +78,25 @@ public class WeatherController {
 	      String output = sb.toString();
 	      
 	      JSONObject obj = new JSONObject(output);
-	      
-	      System.out.println(obj.getJSONObject("response").getJSONObject("body").getJSONObject("items").getJSONArray("item"));
-	      
 	      JSONArray arr = obj.getJSONObject("response").getJSONObject("body").getJSONObject("items").getJSONArray("item");
-	      
+	      System.out.println(arr);
+	      ArrayList list = new ArrayList();
+          Map<Object, Object> mapList = new HashMap<Object, Object>();
+          for(int i = 0; i<arr.length(); i++) {
+        	  String category = arr.getJSONObject(i).getString("category");
+        	  Map<String, Object> map = new HashMap<String, Object>();
+        	  if("POP".equals(category)) map.put("POP", arr.getJSONObject(i).getString("fcstValue"));
+        	  if("PTY".equals(category)) map.put("PTY", arr.getJSONObject(i).getString("fcstValue"));
+        	  if("REH".equals(category)) map.put("REH", arr.getJSONObject(i).getString("fcstValue"));
+        	  if("SKY".equals(category)) map.put("SKY", arr.getJSONObject(i).getString("fcstValue"));
+        	  if("T3H".equals(category)) map.put("T3H", arr.getJSONObject(i).getString("fcstValue"));
+        	  if("TMN".equals(category)) map.put("TMN", arr.getJSONObject(i).getString("fcstValue"));
+        	  if("VEC".equals(category)) map.put("VEC", arr.getJSONObject(i).getString("fcstValue"));
+        	  if("WSD".equals(category)) map.put("WSD", arr.getJSONObject(i).getString("fcstValue"));
+          }
+         
+//          Map<String, WeatherInfo> mapWInfo = new LinkedHashMap<String, WeatherInfo>();
+          JSONArray arrResult = new JSONArray();
 	      for(int i = 0; i<arr.length(); i++) {
 	         String category = arr.getJSONObject(i).getString("category");
             if("POP".equals(category)) {
@@ -121,10 +143,20 @@ public class WeatherController {
                else if("14".equals(a)) System.out.println(" 북서풍");
                else if("15".equals(a)) System.out.println(" 북북서풍");
                else if("16".equals(a)) System.out.println(" 북풍");
+               
             }else if("WSD".equals(category)) {
                System.out.println(" 풍속 -> " + arr.getJSONObject(i).getString("fcstValue") + "m/s");
-               weatherDto.setFcstValue(arr.getJSONObject(i).getString("fcstValue"));
+               
+               Map<String, Object> wsdVal = new HashMap<String, Object>();
+               wsdVal.put("WSD", arr.getJSONObject(i).getString("fcstValue"));
+               
+               list.add(wsdVal);               
             }
         }
+	      JSONObject outObj = new JSONObject();
+	      outObj.put("Value", list);
+
+	      String str = outObj.toString();
+	      return output;
 	}
 }

@@ -50,9 +50,6 @@ function resultVal2(data){
 
 	let date1 = data.fcstDate;
 	
-	const dbae = date1.filter(function(test){
-		console.log(test);
-	})
 	if(yyyymmdd === date1){
 		console.log(data.fcstDate.length);
 		for(var i=0; i<data.fcstDate.length; i++){

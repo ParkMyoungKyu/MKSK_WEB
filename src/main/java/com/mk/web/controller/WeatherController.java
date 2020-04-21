@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -45,7 +46,10 @@ public class WeatherController {
 	      if(14 <= nowTime &&  nowTime < 17)  weatherDto.setBase_time("1400");
 	      if(17 <= nowTime &&  nowTime < 20)  weatherDto.setBase_time("1700");
 	      if(20 <= nowTime &&  nowTime < 23)  weatherDto.setBase_time("2000");
-	      if(23 <= nowTime &&  nowTime < 2 || nowTime == 0)    weatherDto.setBase_time("2300");
+	      if(23 <= nowTime &&  nowTime < 2 || nowTime == 0)   {
+	    	  weatherDto.setBase_date(format1.format(time));
+	    	  weatherDto.setBase_time("2300");
+	      }
 	      
 	      String serviceKey = "w7%2Fp3SnRp8NhmFmt1jm4Q8x1aKjZsP2k%2BnrLjesD3Ptag7iKvo2pDt8d4spRu%2Bm29XKt3mM1hfmUcKYqbi2F%2Fw%3D%3D";
 	      String numOfRows  = "300";

@@ -8,10 +8,11 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<link rel="stylesheet" href="css/main.css" type="text/css">
 <script src="js/todo.js" defer="defer"></script>
 <script src="js/clock.js" defer="defer"></script>
 <script src="js/gretting.js" defer="defer"></script>
+<script src="js/bg.js" defer="defer"></script>
+<link rel="stylesheet" href="css/main.css" type="text/css">
 <script type="text/javascript">
 
 	$(document).ready(function(){
@@ -33,19 +34,18 @@
 		
 	});	
 </script>
-
 </head>
-<%@ include file="common/header.jsp" %>
+	<%@ include file="common/header.jsp" %>
 	<body>
 		<div class="js-clock">
 			<h1 class="rel-time">00:00</h1>
 		</div>
 		<form class="js-form form">
-			<input type="text" placeholder="What is your name?">
+			<input type="text" class="form-Input" placeholder="What is your name?">
 		</form>
 		<h4 class="js-greetings greetings"></h4>
 		<form class="js-toDoForm">
-			<input type="text" placeholder="Write a to do">
+			<input type="text"  class="toDoForm-Input" placeholder="Write a to do">
 		</form>
 		<ul class="js-toDoList"></ul>	
 		
@@ -57,5 +57,5 @@
 			<button id="weather">날씨 예보 API</button>
 		</div>
 	</body>
-<%@ include file="common/footer.jsp" %>
+	<%@ include file="common/footer.jsp" %>
 </html>

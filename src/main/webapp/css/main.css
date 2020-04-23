@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
 body{
 	margin-top: 150px;
 	text-align: center;
@@ -8,13 +10,42 @@ body{
 	margin-bottom: 30px;
 }
 .form-Input{
-	width: 400px;
-	height: 40px;
-	margin-bottom: 10px;
+	font-weight: 900;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    width: 400px;
+    height: 50px;
+    border: 5px solid #fff;
+    border-radius: 15px;
+    cursor: default;
+    transition: .7s;
+    transition-timing-function:cubic-bezier(1,-0.5,0,1.5);
+    text-align: left;
+    box-sizing: border-box;
+    padding-left: 15px;
+    outline: none;
+    font-size: 25px;
+    background: transparent;
+    margin-bottom: 10px;
 }
 .toDoForm-Input{
-	width: 400px;
-	height: 40px;
+    font-weight: 900;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    width: 100px;
+    height: 100px;
+    border: 5px solid #fff;
+    border-radius: 100px;
+    cursor: default;
+    transition: .7s;
+    transition-timing-function:cubic-bezier(1,-0.5,0,1.5);
+    text-align: left;
+    box-sizing: border-box;
+    padding-left: 15px;
+    outline: none;
+    font-size: 25px;
+    background: transparent;
+	
 }
 .form,
 .greetings {
@@ -42,4 +73,44 @@ body{
 	height: 100%;
 	z-index: -1;
 	animation: fadeIn 0.5s linear;
+}
+
+
+
+.line-1 {
+    width: 5px;
+    height: 40px;
+    background: #fff;
+    margin: auto;
+    position: relative;
+    left: 45px;
+    top: -20px;
+    transform: rotate(-45deg);
+    transition: .5s;
+    transition-timing-function: cubic-bezier(1,0,.3,1);
+    cursor: pointer;
+}
+
+.line-2 {
+    width: 5px;
+    height: 0px;
+    background: #fff;
+    margin: auto;
+    transform: rotate(-45deg);
+    position: relative;
+    left: 0;
+    top: -40px;
+    opacity: 0;
+    transition: .5s ease-in-out;
+    transition-timing-function: cubic-bezier(1,0,.3,1);
+    cursor: pointer;
+}
+
+
+.active {
+    width: 400px;
+    height: 50px;
+    border: 5px solid #fff;
+    border-radius: 15px;
+    margin-bottom: 20px;
 }

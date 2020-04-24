@@ -36,30 +36,32 @@
 	});	
 </script>
 </head>
-	<%@ include file="common/header.jsp" %>
+	<%-- <%@ include file="common/header.jsp" %> --%>
 	<body>
-		<div class="js-clock">
-			<h1 class="rel-time">00:00</h1>
-		</div>
-		<form class="js-form form">
-			<input type="text" class="form-Input" placeholder="What is your name?">
-		</form>
-		<h4 class="js-greetings greetings"></h4>
-		<form class="js-toDoForm">
-			<input type="text"  class="toDoForm-Input">
-			<div class="line-1"></div>
-			<div class="line-2"></div>
-		</form>
-		<ul class="js-toDoList"></ul>	
-			
-		
-		
-		<div class="main">
-			<button id="dialog">dialog</button>
-			<button id="juso">도로명 주소 API</button>
-			<button id="jsonTest">jsonTest</button>
-			<!-- <button id="fileUpload">FileUpload</button> -->
-			<button id="weather">날씨 예보 API</button>
+		<div class="bgImg">
+				<div class="js-clock">
+					<h1 class="rel-time">00:00</h1>
+					<h3 class="rel-date">2020년 04s 24일 금요일</h3>
+				</div>
+				<form class="js-form form">
+					<input type="text" class="form-Input" placeholder="What is your name?">
+				</form>
+				<h4 class="js-greetings greetings"></h4>
+				<form class="js-toDoForm">
+					<input type="text"  class="toDoForm-Input">
+					<div class="line-1"></div>
+					<div class="line-2"></div>
+				</form>
+				<ul class="js-toDoList"></ul>	
+					
+				
+				<div class="main">
+					<button id="dialog">dialog</button>
+					<button id="juso">도로명 주소 API</button>
+					<button id="jsonTest">jsonTest</button>
+					<!-- <button id="fileUpload">FileUpload</button> -->
+					<button id="weather">날씨 예보 API</button>
+				</div>
 		</div>
 	</body>
 	<%@ include file="common/footer.jsp" %>

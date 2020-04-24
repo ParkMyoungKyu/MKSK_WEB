@@ -70,6 +70,7 @@ function searchBox(){
 		line1.style.transform = "rotate(45deg)";
 		line1.style.top = "0px";
 		line1.style.left = "0px";
+		line1.style.height = "40px";
 		line2.style.height = "40px";
 		line2.style.opacity = "1";
 	}
@@ -79,6 +80,7 @@ function searchBox(){
 		line1.style.transform = "rotate(-45deg)";
 		line1.style.top = "-20px";
 		line1.style.left = "45px";
+		line1.style.height = "0px";
 		line2.style.height = "0px";
 		line2.style.opacity = "0";
 	}
@@ -88,11 +90,11 @@ function searchBox(){
 		line1.style.transform = "rotate(-45deg)";
 		line1.style.top = "-20px";
 		line1.style.left = "45px";
+		line1.style.height = "0px";
 		line2.style.height = "0px";
 		line2.style.opacity = "0";
 	}
 }
-
 
 function init(){
 	searchBox();

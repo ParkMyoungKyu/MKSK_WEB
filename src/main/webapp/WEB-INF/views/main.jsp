@@ -35,37 +35,6 @@
 		
 	});	
 </script>
-<script type="text/javascript">
- $(document).ready(function() {
-	$('.search').click(function() {
-			$('.search').attr('placeholder','오늘은 무엇을 해볼까?');
-			$('.search').addClass('active');
-			$('.line-1').css({
-					'transform': 'rotate(45deg)',
-					'top': '0px',
-					'left': '0px'
-			});
-			$('.line-2').css({
-					'height':'40px',
-					'opacity':'1'
-			});
-	});
-	$('.line-1, .line-2').click(function() {
-			$('.search').attr('placeholder','?');
-			$('.search').removeClass('active').val('');
-			$('.line-1').css({
-					'transform': 'rotate(-45deg)',
-					'top': '-20px',
-					'left': '45px'
-			});
-			$('.line-2').css({
-					'height':'0px',
-					'opacity':'0'
-			});
-
-	});
-});
-</script>
 </head>
 	<%@ include file="common/header.jsp" %>
 	<body>
@@ -83,13 +52,6 @@
 		</form>
 		<ul class="js-toDoList"></ul>	
 			
-		
-		
-		<form action="javascript:text()">
-			<input type="text" class="search" placeholder="오늘은 무엇을 해볼까?"/>
-		</form>
-		<div class="line-1"></div>
-		<div class="line-2"></div>
 		
 		
 		<div class="main">

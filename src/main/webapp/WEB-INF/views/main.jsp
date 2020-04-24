@@ -12,6 +12,7 @@
 <script src="js/clock.js" defer="defer"></script>
 <script src="js/gretting.js" defer="defer"></script>
 <script src="js/bg.js" defer="defer"></script>
+<!-- <script src="js/searchBox.js" defer="defer"></script> -->
 <link rel="stylesheet" href="css/main.css" type="text/css">
 <script type="text/javascript">
 
@@ -76,9 +77,13 @@
 		</form>
 		<h4 class="js-greetings greetings"></h4>
 		<form class="js-toDoForm">
-			<input type="text"  class="toDoForm-Input" placeholder="Write a to do">
+			<input type="text"  class="toDoForm-Input">
+			<div class="line-1"></div>
+			<div class="line-2"></div>
 		</form>
 		<ul class="js-toDoList"></ul>	
+			
+		
 		
 		<form action="javascript:text()">
 			<input type="text" class="search" placeholder="오늘은 무엇을 해볼까?"/>

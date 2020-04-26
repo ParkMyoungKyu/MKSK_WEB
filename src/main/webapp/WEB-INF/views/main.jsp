@@ -13,6 +13,8 @@
 <script src="js/gretting.js" defer="defer"></script>
 <script src="js/bg.js" defer="defer"></script>
 <!-- <script src="js/searchBox.js" defer="defer"></script> -->
+<script src="js/slide.js" defer="defer"></script>
+<link rel="stylesheet" href="css/slider.css" type="text/css">
 <link rel="stylesheet" href="css/main.css" type="text/css">
 <script type="text/javascript">
 
@@ -39,30 +41,42 @@
 	<%-- <%@ include file="common/header.jsp" %> --%>
 	<body>
 		<div class="bgImg">
-				<div class="js-clock">
-					<h1 class="rel-time">00:00</h1>
-					<h3 class="rel-date">2020년 04s 24일 금요일</h3>
+			<div class="js-clock">
+				<h1 class="rel-time">00:00</h1>
+				<h3 class="rel-date"></h3>
+			</div>
+			<div class="slider-wrapper">
+				<ul id="slider">
+					<li>
+						<form class="js-form form">
+							<input type="text" class="form-Input" placeholder="What is your name?">
+						</form>
+						<h4 class="js-greetings greetings"></h4>
+						<form class="js-toDoForm">
+							<input type="text"  class="toDoForm-Input">
+							<div class="line-1"></div>
+							<div class="line-2"></div>
+						</form>
+						<ul class="js-toDoList"></ul>
+					</li>		
+					<li>		
+						<div class="main">
+							<button id="dialog">dialog</button>
+							<button id="juso">도로명 주소 API</button>
+							<button id="jsonTest">jsonTest</button>
+							<button id="fileUpload">FileUpload</button>
+							<button id="weather">날씨 예보 API</button>
+						</div>
+					</li>
+				</ul>
+				<div onclick="slide_next()" class="controll controll-right">
+					<img src="images/a.jpg" alt="">
 				</div>
-				<form class="js-form form">
-					<input type="text" class="form-Input" placeholder="What is your name?">
-				</form>
-				<h4 class="js-greetings greetings"></h4>
-				<form class="js-toDoForm">
-					<input type="text"  class="toDoForm-Input">
-					<div class="line-1"></div>
-					<div class="line-2"></div>
-				</form>
-				<ul class="js-toDoList"></ul>	
-					
-				
-				<div class="main">
-					<button id="dialog">dialog</button>
-					<button id="juso">도로명 주소 API</button>
-					<button id="jsonTest">jsonTest</button>
-					<!-- <button id="fileUpload">FileUpload</button> -->
-					<button id="weather">날씨 예보 API</button>
-				</div>
-		</div>
+				<div onclick="previous_slide()" class="controll controll-left">
+					<img src="images/a.jpg" alt="">
+				</div>		
+			</div>
+	</div>
 	</body>
 	<%@ include file="common/footer.jsp" %>
 </html>

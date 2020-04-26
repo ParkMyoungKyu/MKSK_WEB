@@ -77,7 +77,6 @@ public class WeatherController {
 	      br.close();
 
 	      String output = sb.toString();
-	      
 	      JSONObject obj = new JSONObject(output);
 	      JSONArray arr = obj.getJSONObject("response").getJSONObject("body").getJSONObject("items").getJSONArray("item");
 	      String rstMsg = obj.getJSONObject("response").getJSONObject("header").getString("resultMsg");

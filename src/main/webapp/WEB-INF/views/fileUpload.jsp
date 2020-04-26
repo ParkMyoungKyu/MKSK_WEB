@@ -5,16 +5,31 @@
 <head>
 <meta charset="UTF-8">
 <title>FileUpload</title>
+<script src="js/slide.js" defer="defer"></script>
+<link rel="stylesheet" href="css/slider.css" type="text/css">
 </head>
-<%@ include file="common/header.jsp" %>
 <body>
-	<form action="fileUpload.do" method="post" enctype="mutipart/form-data">
-		이름 : <input type="text" name="m_name"><br>
-		별명 : <input type="text" name="m_nickname"><br>
-		사진 : <input type="file" name="m_file"><br>
-		
-		<input type="submit" value="전송">
-	</form>
+	<div class="slider-wrapper">
+		<ul id="slider">
+			<li>
+				<p>FIRST ITEM</p>
+			</li>
+			<li>
+				<p>SECOND ITEM</p>
+			</li>
+			<li>
+				<p>THIRD ITEM</p>
+			</li>	
+		</ul>
+		<div onclick="slide_next()" class="controll controll-right">
+			<img src="images/a.jpg" alt="">
+		</div>
+		<div onclick="previous_slide()" class="controll controll-left">
+			<img src="images/a.jpg" alt="">
+		</div>		
+	</div>
+	
+	
+	
 </body>
-<%@ include file="common/footer.jsp" %>
 </html>

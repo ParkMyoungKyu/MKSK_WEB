@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>날씨 정보 확인</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<link rel="stylesheet" href="css/weather.css" type="text/css">
 <script type="text/javascript">
 function weatherSearch2(){
 	location.href="weatherSearch.do";
@@ -30,37 +31,80 @@ function resultVal(data){
 }
 
 function resultVal2(data){
+	const toDay = document.querySelector(".toDay");
+	
 	const div = document.querySelector(".resultVal");
 	const ul = document.createElement("ul");
 	const ui = document.createElement("li");
-	const span = document.createElement("span");
+	const valueDiv = document.createElement("div");
 	
 	let today = new Date();
 
-	let year = today.getFullYear();
-	let month = today.getMonth()+1;
-	let date = today.getDate();
-	let hours = today.getHours(); 
-	let minutes = today.getMinutes();  
-
+	let year = today.getFullYear();		// 현재 년도
+	let month = today.getMonth()+1;		// 현재 월
+	let date = today.getDate();			// 현재 일
+	let day = today.getDay();			// 현재 요일
+	let hours = today.getHours(); 		// 현재 시간
+	let minutes = today.getMinutes();  	// 현재 분
+	
 	if(date<10)	date = 0+""+date;
 	if(month<10) month = 0+""+month;
+	if(day === 0)  day = "SUN";
+	if(day === 1)  day = "MON";
+	if(day === 2)  day = "TUS";
+	if(day === 3)  day = "WED";
+	if(day === 4)  day = "THR";
+	if(day === 5)  day = "FRI";
+	if(day === 6)  day = "SAT";
 	
-	let yyyymmdd = year+""+month+""+date;
+	const toDays = year+". "+month+". "+date+". "+day;
 
-	let date1 = data.fcstDate;
+	toDay.innerText = toDays;
+
 	
-	if(yyyymmdd === date1){
-		console.log(data.fcstDate.length);
+	
+	const category = data.category;
+	
+	//if(yyyymmdd === date1){
 		for(var i=0; i<data.fcstDate.length; i++){
-			span.innerText = JSON.stringify(data.fcstDate);
+			if(category === "POP"){
+				/* ul.innerText = JSON.stringify(data.fcstDate);
+				span.innerText = JSON.stringify(data.fcstTime); */
+				valueDiv.innerText = "강수확률 "+data.fcstValue;
+				console.log("예보 날짜" + data.fcstDate);
+				console.log("예보 시간" + data.fcstTime);
+				console.log("강수확률 -> " + data.fcstValue);
+			} else if(category === "PTY"){
+				valueDiv.innerText = "강수형태" + data.fcstValue;
+				console.log("강수형태 -> " + data.fcstValue);
+			} else if(category === "REH"){
+				valueDiv.innerText = data.fcstValue;
+				console.log("습도 -> " + data.fcstValue);
+			} else if(category === "SKY"){
+				valueDiv.innerText = data.fcstValue;
+				console.log("날씨 -> " + data.fcstValue);
+			} else if(category === "T3H"){
+				valueDiv.innerText = data.fcstValue;
+				console.log("기온 -> " + data.fcstValue);
+			} else if(category === "TMN"){
+				valueDiv.innerText = data.fcstValue;
+				console.log("아침 최저기온 -> " + data.fcstValue);
+			} else if(category === "VEC"){
+				valueDiv.innerText = data.fcstValue;
+				console.log("풍향 -> " + data.fcstValue);
+			} else if(category === "WSD"){
+				valueDiv.innerText = data.fcstValue;
+				console.log("풍속 -> " + data.fcstValue);
+			}
+			ui.appendChild(valueDiv);
 		}
-	}
-	ui.appendChild(span);
+	//}
+	
 	ul.appendChild(ui);
 
 	div.appendChild(ul);
 }
+
 function weatherSearch(){
 		$.ajax({
 			url : "weatherSearch.do",
@@ -71,7 +115,7 @@ function weatherSearch(){
 				
 				var data = jsonStr.response.body.items.item;
 				
-				console.log(data);
+				//console.log(data);
 				data.forEach(function(val){
 			//		resultVal(val);
 					resultVal2(val);
@@ -85,38 +129,61 @@ function weatherSearch(){
 	}
 </script>
 </head>
-<%@ include file="common/header.jsp" %>
+<%-- <%@ include file="common/header.jsp" %> --%>
 <body>
 	<div>날씨 정보 확인</div>
 	<form id="weather" name="weather">
 		<input type="button" value="날씨 확인" onclick="weatherSearch();">
 	</form>	
 	
-	<div class="resultVal" style="background-color: #d5d5ea; display: inline-flex;">	
-		<ul>
+	<div class="resultVal">	
+		<ul class="nowWeather">
 			<li>
-				<span>날짜</span>	
+				<span class="toDay">2020. 04. 28. Mon</span>	
 			</li>
 			<li>
-				<span>온도</span>	
-				<span>풍속</span>
-				<span>풍향</span>
+				<p>12:00 AM</p>
+			</li>
+			<li>
+				<span>17°C</span>
+				<span>12°C / 18°C</span>	
 				<span>구름</span>
+				<span>북동풍</span>
+				<span>20m/s</span>
 			</li>
 		</ul>
-		<ul>
+		<ul class="weatherList" style="display: flex;">
 			<li>
-				<span>날짜</span>	
+				<div>03시</div>
+				<div>맑음</div>
+				<div>13</div>
+				<div>북동풍 / 20m/s</div>
+				<div>0%</div>
+				<div>0</div>
+				<div>30%</div>
 			</li>
-			<li>
-				<span>온도</span>	
-				<span>풍속</span>
-				<span>풍향</span>
-				<span>구름</span>
+			<li> 
+				<div>03시</div>
+				<div>맑음</div>
+				<div>13</div>
+				<div>북동풍 / 20m/s</div>
+				<div>0%</div>
+				<div>0</div>
+				<div>30%</div>
+			</li>
+			<li> 
+				<div>03시</div>
+				<div>맑음</div>
+				<div>13</div>
+				<div>북동풍 / 20m/s</div>
+				<div>0%</div>
+				<div>0</div>
+				<div>30%</div>
 			</li>
 		</ul>
-
 	</div>
+	
+	<!-- 
 	<table>
 		<thead>
 			<tr>
@@ -130,7 +197,7 @@ function weatherSearch(){
 			</tr>
 		</thead>
 		<tbody class="result"></tbody>
-	</table>
+	</table> -->
 </body>
 <%@ include file="common/footer.jsp" %>
 </html>

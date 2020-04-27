@@ -68,39 +68,37 @@ function resultVal2(data){
 	//if(yyyymmdd === date1){
 		for(var i=0; i<data.fcstDate.length; i++){
 			if(category === "POP"){
-				/* ul.innerText = JSON.stringify(data.fcstDate);
-				span.innerText = JSON.stringify(data.fcstTime); */
-				valueDiv.innerText = "강수확률 "+data.fcstValue;
+				valueDiv.innerText = "강수확률 -> "+data.fcstValue;
 				console.log("예보 날짜" + data.fcstDate);
 				console.log("예보 시간" + data.fcstTime);
 				console.log("강수확률 -> " + data.fcstValue);
 			} else if(category === "PTY"){
-				valueDiv.innerText = "강수형태" + data.fcstValue;
+				valueDiv.innerText = "강수형태 -> " + data.fcstValue;
 				console.log("강수형태 -> " + data.fcstValue);
 			} else if(category === "REH"){
-				valueDiv.innerText = data.fcstValue;
+				valueDiv.innerText = "습도 -> " +  data.fcstValue;
 				console.log("습도 -> " + data.fcstValue);
 			} else if(category === "SKY"){
-				valueDiv.innerText = data.fcstValue;
+				valueDiv.innerText = "날씨 -> " + data.fcstValue;
 				console.log("날씨 -> " + data.fcstValue);
 			} else if(category === "T3H"){
-				valueDiv.innerText = data.fcstValue;
+				valueDiv.innerText = "기온 -> " +data.fcstValue;
 				console.log("기온 -> " + data.fcstValue);
 			} else if(category === "TMN"){
-				valueDiv.innerText = data.fcstValue;
+				valueDiv.innerText ="아침 최저기온 -> " +  data.fcstValue;
 				console.log("아침 최저기온 -> " + data.fcstValue);
 			} else if(category === "VEC"){
-				valueDiv.innerText = data.fcstValue;
+				valueDiv.innerText = "풍향 -> " + data.fcstValue;
 				console.log("풍향 -> " + data.fcstValue);
 			} else if(category === "WSD"){
-				valueDiv.innerText = data.fcstValue;
+				valueDiv.innerText = "풍속 -> " + data.fcstValue;
 				console.log("풍속 -> " + data.fcstValue);
 			}
-			ui.appendChild(valueDiv);
+			/* ui.appendChild(valueDiv); */
 		}
 	//}
 	
-	ul.appendChild(ui);
+	ul.appendChild(valueDiv);
 
 	div.appendChild(ul);
 }

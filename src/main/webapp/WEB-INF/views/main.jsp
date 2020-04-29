@@ -34,6 +34,9 @@
 		$("#weather").click(function(){
 			location.href = "menuMove.do?command=05"
 		});
+		$("#jsonValGet").click(function(){
+			location.href = "menuMove.do?command=06"
+		});
 		
 	});	
 </script>
@@ -64,8 +67,11 @@
 							<button id="dialog">dialog</button>
 							<button id="juso">도로명 주소 API</button>
 							<button id="jsonTest">jsonTest</button>
-							<button id="fileUpload">FileUpload</button>
+							<!-- <button id="fileUpload">FileUpload</button> -->
 							<button id="weather">날씨 예보 API</button>
+							<!-- <button id="">POI EXCEL 업로드</button> -->
+							<button id="jsonValGet">재귀함수</button>
+							<!-- <button id=""></button> -->
 						</div>
 					</li>
 				</ul>

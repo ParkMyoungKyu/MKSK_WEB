@@ -35,7 +35,7 @@ function resultVal2(data){
 	
 	const div = document.querySelector(".resultVal");
 	const ul = document.createElement("ul");
-	const ui = document.createElement("li");
+	const li = document.createElement("li");
 	const valueDiv = document.createElement("div");
 	
 	let today = new Date();
@@ -60,46 +60,31 @@ function resultVal2(data){
 	const toDays = year+". "+month+". "+date+". "+day;
 
 	toDay.innerText = toDays;
-
-	
-	
 	const category = data.category;
-	
-	//if(yyyymmdd === date1){
-		for(var i=0; i<data.fcstDate.length; i++){
+	if(category === "T3H"){
+		valueDiv.innerText = data.fcstValue;
+	}
+	/* 	for(var i=0; i<data.fcstDate.length; i++){
 			if(category === "POP"){
 				valueDiv.innerText = "강수확률 -> "+data.fcstValue;
-				console.log("예보 날짜" + data.fcstDate);
-				console.log("예보 시간" + data.fcstTime);
-				console.log("강수확률 -> " + data.fcstValue);
 			} else if(category === "PTY"){
 				valueDiv.innerText = "강수형태 -> " + data.fcstValue;
-				console.log("강수형태 -> " + data.fcstValue);
 			} else if(category === "REH"){
 				valueDiv.innerText = "습도 -> " +  data.fcstValue;
-				console.log("습도 -> " + data.fcstValue);
 			} else if(category === "SKY"){
 				valueDiv.innerText = "날씨 -> " + data.fcstValue;
-				console.log("날씨 -> " + data.fcstValue);
 			} else if(category === "T3H"){
 				valueDiv.innerText = "기온 -> " +data.fcstValue;
-				console.log("기온 -> " + data.fcstValue);
 			} else if(category === "TMN"){
-				valueDiv.innerText ="아침 최저기온 -> " +  data.fcstValue;
-				console.log("아침 최저기온 -> " + data.fcstValue);
+				valueDiv.innerText ="아침 최저기온 -> " +  data.fcstValue; 
 			} else if(category === "VEC"){
 				valueDiv.innerText = "풍향 -> " + data.fcstValue;
-				console.log("풍향 -> " + data.fcstValue);
 			} else if(category === "WSD"){
 				valueDiv.innerText = "풍속 -> " + data.fcstValue;
-				console.log("풍속 -> " + data.fcstValue);
-			}
-			/* ui.appendChild(valueDiv); */
-		}
-	//}
-	
-	ul.appendChild(valueDiv);
-
+			} 
+		}*/
+	li.appendChild(valueDiv);
+	ul.appendChild(li);
 	div.appendChild(ul);
 }
 
@@ -110,10 +95,8 @@ function weatherSearch(){
 			dataType : "json",
 			data : $("#weather").serialize(),
 			success : function(jsonStr){
-				
 				var data = jsonStr.response.body.items.item;
 				
-				//console.log(data);
 				data.forEach(function(val){
 			//		resultVal(val);
 					resultVal2(val);
@@ -181,21 +164,6 @@ function weatherSearch(){
 		</ul>
 	</div>
 	
-	<!-- 
-	<table>
-		<thead>
-			<tr>
-				<th>예보날짜</th>
-				<th>예보시간</th>
-				<th>강수확률</th>
-				<th>강수형태</th>
-				<th>습도</th>
-				<th>날씨</th>
-				<th>기온</th>			
-			</tr>
-		</thead>
-		<tbody class="result"></tbody>
-	</table> -->
 </body>
 <%@ include file="common/footer.jsp" %>
 </html>

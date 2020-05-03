@@ -80,77 +80,115 @@ public class WeatherController {
 	      
 	      JSONObject obj = new JSONObject(output);
 	      JSONArray arr = obj.getJSONObject("response").getJSONObject("body").getJSONObject("items").getJSONArray("item");
-	      String rstMsg = obj.getJSONObject("response").getJSONObject("header").getString("resultMsg");
-//	      System.out.println("resultMsg -> " + rstMsg);
+	      
 	      System.out.println(obj);
 	      System.out.println(arr);
 	      
-	      LinkedHashMap<String , Object> map1 = new LinkedHashMap<String, Object>();
-	      LinkedHashMap<String , Object> map2 = new LinkedHashMap<String, Object>();
-	      LinkedHashMap<String , Object> map3 = new LinkedHashMap<String, Object>();
+	      String getDay = "";
+	      String getTime = "";
 	      
+	      ArrayList<LinkedHashMap<String, Object>> list = new ArrayList<LinkedHashMap<String,Object>>();
+	      LinkedHashMap<String, Object> map1 = new LinkedHashMap<String, Object>();
+	      LinkedHashMap<String, Object> map2 = new LinkedHashMap<String, Object>();
 	      
 	      for(int i = 0; i<arr.length(); i++) {
+	    	  JSONObject weather = arr.getJSONObject(i);
+	    	  String fcstValue = weather.get("fcstValue").toString();
+	    	  String fcstDate = weather.get("fcstDate").toString();
+	    	  String fcstTime = weather.get("fcstTime").toString();
 	    	  
-	         String category = arr.getJSONObject(i).getString("category");
-	         String dateValue = arr.getJSONObject(i).getString("fcstDate");
-             String timeValue = arr.getJSONObject(i).getString("fcstTime");
-
-             if("POP".equals(category)) {
-//              System.out.println("======================================");
-//               System.out.println(" 예보 날짜 " + arr.getJSONObject(i).getString("fcstDate"));
-//               System.out.println(" 예보 시간 " + arr.getJSONObject(i).getString("fcstTime"));
-//               System.out.println(" 강수확률 -> " + arr.getJSONObject(i).getString("fcstValue") +"%");
-            }else if("PTY".equals(category)) {
-//               System.out.println(" 강수형태 -> " + arr.getJSONObject(i).getString("fcstValue"));
-            }else if("REH".equals(category)) {
-//               System.out.println(" 습도 -> " + arr.getJSONObject(i).getString("fcstValue")+"%");
-            }else if("SKY".equals(category)) {
-               if("1".equals(arr.getJSONObject(i).getString("fcstValue"))) {
-//                  System.out.println(" 날씨 (" + arr.getJSONObject(i).getString("fcstValue") + ") >>> 맑음");
-               }else if("2".equals(arr.getJSONObject(i).getString("fcstValue"))) {
-//                  System.out.println(" 날씨 (" + arr.getJSONObject(i).getString("fcstValue") + ") >>> 구름조금");
-               }else if("3".equals(arr.getJSONObject(i).getString("fcstValue"))) {
-//                  System.out.println(" 날씨 (" + arr.getJSONObject(i).getString("fcstValue") + ") >>> 구름많음");
-               }else if("4".equals(arr.getJSONObject(i).getString("fcstValue"))) {
-//                  System.out.println(" 날씨 (" + arr.getJSONObject(i).getString("fcstValue") + ") >>> 흐림");
-               }
-            }else if("T3H".equals(category)) {
-//               System.out.println(" 기온 -> " + arr.getJSONObject(i).getString("fcstValue") +"°C");
-            }else if("TMN".equals(category)) {
-//               System.out.println(" 아침 최저기온 -> " + arr.getJSONObject(i).getString("fcstValue"));
-            }else if("VEC".equals(category)) {
-//               System.out.println(" 풍향 -> " + arr.getJSONObject(i).getString("fcstValue"));
-               int b = Integer.parseInt(arr.getJSONObject(i).getString("fcstValue"));
-               String a = Integer.toString((int) ((b+11.25)/22.5));
-//               if("0".equals(a)) System.out.println(" 북풍");
-//               else if("1".equals(a)) System.out.println(" 북북동풍");
-//               else if("2".equals(a)) System.out.println(" 북동풍");
-//               else if("3".equals(a)) System.out.println(" 동북동풍");
-//               else if("4".equals(a)) System.out.println(" 동풍");
-//               else if("5".equals(a)) System.out.println(" 동남동풍");
-//               else if("6".equals(a)) System.out.println(" 남동풍");
-//               else if("7".equals(a)) System.out.println(" 남남동풍");
-//               else if("8".equals(a)) System.out.println(" 남풍");
-//               else if("9".equals(a)) System.out.println(" 남남서풍");
-//               else if("10".equals(a)) System.out.println(" 남서풍");
-//               else if("11".equals(a)) System.out.println(" 서남서풍");
-//               else if("12".equals(a)) System.out.println(" 서풍");
-//               else if("13".equals(a)) System.out.println(" 서북서풍");
-//               else if("14".equals(a)) System.out.println(" 북서풍");
-//               else if("15".equals(a)) System.out.println(" 북북서풍");
-//               else if("16".equals(a)) System.out.println(" 북풍");
-               	 map1.put("VEC", arr.getJSONObject(i).getString("fcstValue"));
-            }else if("WSD".equals(category)) {
-//               System.out.println(" 풍속 -> " + arr.getJSONObject(i).getString("fcstValue") + "m/s");
-            	 map1.put("WSD", arr.getJSONObject(i).getString("fcstValue"));
-            }
-            //map1.put(category, arr.getJSONObject(i).getString("fcstValue"));
-            map2.put(timeValue, map1);
-            map3.put(dateValue, map2);
-        }
+	    	  String category = weather.get("category").toString();
+	    	  
+	    	  if(!getDay.equals(fcstDate.toString())){
+	    		  getDay=fcstDate.toString();
+	    	  }
+	    	  if(!getTime.equals(fcstTime.toString())) {
+	    		  getTime = fcstTime.toString();
+	    		  System.out.println("예보 날짜 : " + getDay);
+		    	  System.out.println("예보 시간 : " + getTime);
+	    	  }
+	    	  
+	    	  System.out.print("category : " + category);
+	    	  System.out.print(", fcst Value : " + fcstValue);
+	    	  System.out.print(", fcstDate : " + fcstDate);
+	    	  System.out.println(", fcstTime : " + fcstTime );
+	    	  map1.put("category", category);
+	    	  map1.put("fcstValue", fcstValue);
+	    	  map1.put("fcstDate", fcstDate);
+	    	  map1.put("fcstTime", fcstTime);
+	      }
+	      
+	      
+	      
+	      
+	      
+	      
+//	      
+//	      LinkedHashMap<String , Object> map1 = new LinkedHashMap<String, Object>();
+//	      LinkedHashMap<String , Object> map2 = new LinkedHashMap<String, Object>();
+//	      LinkedHashMap<String , Object> map3 = new LinkedHashMap<String, Object>();
+//	      
+//	      for(int i = 0; i<arr.length(); i++) {
+//	    	  
+//	         String category = arr.getJSONObject(i).getString("category");
+//	         String dateValue = arr.getJSONObject(i).getString("fcstDate");
+//             String timeValue = arr.getJSONObject(i).getString("fcstTime");
+//
+//             if("POP".equals(category)) {
+////              System.out.println("======================================");
+////               System.out.println(" 예보 날짜 " + arr.getJSONObject(i).getString("fcstDate"));
+////               System.out.println(" 예보 시간 " + arr.getJSONObject(i).getString("fcstTime"));
+////               System.out.println(" 강수확률 -> " + arr.getJSONObject(i).getString("fcstValue") +"%");
+//            }else if("PTY".equals(category)) {
+////               System.out.println(" 강수형태 -> " + arr.getJSONObject(i).getString("fcstValue"));
+//            }else if("REH".equals(category)) {
+////               System.out.println(" 습도 -> " + arr.getJSONObject(i).getString("fcstValue")+"%");
+//            }else if("SKY".equals(category)) {
+//               if("1".equals(arr.getJSONObject(i).getString("fcstValue"))) {
+////                  System.out.println(" 날씨 (" + arr.getJSONObject(i).getString("fcstValue") + ") >>> 맑음");
+//               }else if("2".equals(arr.getJSONObject(i).getString("fcstValue"))) {
+////                  System.out.println(" 날씨 (" + arr.getJSONObject(i).getString("fcstValue") + ") >>> 구름조금");
+//               }else if("3".equals(arr.getJSONObject(i).getString("fcstValue"))) {
+////                  System.out.println(" 날씨 (" + arr.getJSONObject(i).getString("fcstValue") + ") >>> 구름많음");
+//               }else if("4".equals(arr.getJSONObject(i).getString("fcstValue"))) {
+////                  System.out.println(" 날씨 (" + arr.getJSONObject(i).getString("fcstValue") + ") >>> 흐림");
+//               }
+//            }else if("T3H".equals(category)) {
+////               System.out.println(" 기온 -> " + arr.getJSONObject(i).getString("fcstValue") +"°C");
+//            }else if("TMN".equals(category)) {
+////               System.out.println(" 아침 최저기온 -> " + arr.getJSONObject(i).getString("fcstValue"));
+//            }else if("VEC".equals(category)) {
+////               System.out.println(" 풍향 -> " + arr.getJSONObject(i).getString("fcstValue"));
+//               int b = Integer.parseInt(arr.getJSONObject(i).getString("fcstValue"));
+//               String a = Integer.toString((int) ((b+11.25)/22.5));
+////               if("0".equals(a)) System.out.println(" 북풍");
+////               else if("1".equals(a)) System.out.println(" 북북동풍");
+////               else if("2".equals(a)) System.out.println(" 북동풍");
+////               else if("3".equals(a)) System.out.println(" 동북동풍");
+////               else if("4".equals(a)) System.out.println(" 동풍");
+////               else if("5".equals(a)) System.out.println(" 동남동풍");
+////               else if("6".equals(a)) System.out.println(" 남동풍");
+////               else if("7".equals(a)) System.out.println(" 남남동풍");
+////               else if("8".equals(a)) System.out.println(" 남풍");
+////               else if("9".equals(a)) System.out.println(" 남남서풍");
+////               else if("10".equals(a)) System.out.println(" 남서풍");
+////               else if("11".equals(a)) System.out.println(" 서남서풍");
+////               else if("12".equals(a)) System.out.println(" 서풍");
+////               else if("13".equals(a)) System.out.println(" 서북서풍");
+////               else if("14".equals(a)) System.out.println(" 북서풍");
+////               else if("15".equals(a)) System.out.println(" 북북서풍");
+////               else if("16".equals(a)) System.out.println(" 북풍");
+//               	 map1.put("VEC", arr.getJSONObject(i).getString("fcstValue"));
+//            }else if("WSD".equals(category)) {
+////               System.out.println(" 풍속 -> " + arr.getJSONObject(i).getString("fcstValue") + "m/s");
+//            	 map1.put("WSD", arr.getJSONObject(i).getString("fcstValue"));
+//            }
+//            //map1.put(category, arr.getJSONObject(i).getString("fcstValue"));
+//            map2.put(timeValue, map1);
+//            map3.put(dateValue, map2);
+//        }
 	     
-	      System.out.println(map3);
+//	      System.out.println(map3);
 	      return output;
 	}
 }

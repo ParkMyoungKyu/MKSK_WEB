@@ -4,12 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -81,49 +77,40 @@ public class WeatherController {
 	      JSONObject obj = new JSONObject(output);
 	      JSONArray arr = obj.getJSONObject("response").getJSONObject("body").getJSONObject("items").getJSONArray("item");
 	      
-	      System.out.println(obj);
-	      System.out.println(arr);
-	      
-	      String getDay = "";
-	      String getTime = "";
-	      
-	      ArrayList<LinkedHashMap<String, Object>> list = new ArrayList<LinkedHashMap<String,Object>>();
 	      LinkedHashMap<String, Object> map1 = new LinkedHashMap<String, Object>();
 	      LinkedHashMap<String, Object> map2 = new LinkedHashMap<String, Object>();
-	      
+	      LinkedHashMap<String, Object> map3 = new LinkedHashMap<String, Object>();
+	      LinkedHashMap<String, Object> map4 = new LinkedHashMap<String, Object>();
+
 	      for(int i = 0; i<arr.length(); i++) {
 	    	  JSONObject weather = arr.getJSONObject(i);
 	    	  String fcstValue = weather.get("fcstValue").toString();
 	    	  String fcstDate = weather.get("fcstDate").toString();
 	    	  String fcstTime = weather.get("fcstTime").toString();
-	    	  
 	    	  String category = weather.get("category").toString();
 	    	  
-	    	  if(!getDay.equals(fcstDate.toString())){
-	    		  getDay=fcstDate.toString();
-	    	  }
-	    	  if(!getTime.equals(fcstTime.toString())) {
-	    		  getTime = fcstTime.toString();
-	    		  System.out.println("예보 날짜 : " + getDay);
-		    	  System.out.println("예보 시간 : " + getTime);
-	    	  }
+	    	  if(category.equals("POP")) map1 = new LinkedHashMap<String, Object>();	// category가 POP가 다시 나오면 초기화 하기위해 설정
+	    	  if(fcstTime.equals("0000")) map2 = new LinkedHashMap<String, Object>();   // 시간이 0000이 나오면 초기화 하기위해 설정
 	    	  
-	    	  System.out.print("category : " + category);
-	    	  System.out.print(", fcst Value : " + fcstValue);
-	    	  System.out.print(", fcstDate : " + fcstDate);
-	    	  System.out.println(", fcstTime : " + fcstTime );
-	    	  map1.put("category", category);
-	    	  map1.put("fcstValue", fcstValue);
-	    	  map1.put("fcstDate", fcstDate);
-	    	  map1.put("fcstTime", fcstTime);
+	    	  map1.put(category, fcstValue);
+	    	  map2.put(fcstTime, map1);
+	    	  map3.put(fcstDate, map2);
+	    	  map4.put("weather",map3);
 	      }
 	      
+	      //map 방식을 다시 json형태로 변환하기 위한 로직
+	      JSONObject newJson = new JSONObject();
 	      
+	      for(Map.Entry<String, Object> entry : map4.entrySet()) {
+	    	  String key = entry.getKey();
+	    	  Object value = entry.getValue();
+	    	  newJson.put(key, value);
+	      }
 	      
+	     // System.out.println(newJson);
 	      
-	      
-	      
-//	      
+	      return newJson.toString(); // 받은 output 값 가공해서 출력
+	      //return output;           // 받은 output 값 그대로 출력
 //	      LinkedHashMap<String , Object> map1 = new LinkedHashMap<String, Object>();
 //	      LinkedHashMap<String , Object> map2 = new LinkedHashMap<String, Object>();
 //	      LinkedHashMap<String , Object> map3 = new LinkedHashMap<String, Object>();
@@ -178,17 +165,9 @@ public class WeatherController {
 ////               else if("14".equals(a)) System.out.println(" 북서풍");
 ////               else if("15".equals(a)) System.out.println(" 북북서풍");
 ////               else if("16".equals(a)) System.out.println(" 북풍");
-//               	 map1.put("VEC", arr.getJSONObject(i).getString("fcstValue"));
 //            }else if("WSD".equals(category)) {
 ////               System.out.println(" 풍속 -> " + arr.getJSONObject(i).getString("fcstValue") + "m/s");
-//            	 map1.put("WSD", arr.getJSONObject(i).getString("fcstValue"));
 //            }
-//            //map1.put(category, arr.getJSONObject(i).getString("fcstValue"));
-//            map2.put(timeValue, map1);
-//            map3.put(dateValue, map2);
 //        }
-	     
-//	      System.out.println(map3);
-	      return output;
 	}
 }

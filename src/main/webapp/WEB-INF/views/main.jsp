@@ -14,6 +14,7 @@
 <script src="js/bg.js" defer="defer"></script>
 <!-- <script src="js/searchBox.js" defer="defer"></script> -->
 <script src="js/slide.js" defer="defer"></script>
+<script src="js/weather.js" defer="defer"></script>
 <link rel="stylesheet" href="css/slider.css" type="text/css">
 <link rel="stylesheet" href="css/main.css" type="text/css">
 <script type="text/javascript">
@@ -34,6 +35,9 @@
 		$("#weather").click(function(){
 			location.href = "menuMove.do?command=05"
 		});
+		$("#jsonValGet").click(function(){
+			location.href = "menuMove.do?command=06"
+		});
 		
 	});	
 </script>
@@ -45,6 +49,7 @@
 				<h1 class="rel-time">00:00</h1>
 				<h3 class="rel-date"></h3>
 			</div>
+			<span class="js-weather"></span>
 			<div class="slider-wrapper">
 				<ul id="slider">
 					<li>
@@ -58,14 +63,19 @@
 							<div class="line-2"></div>
 						</form>
 						<ul class="js-toDoList"></ul>
-					</li>		
+					</li>	
+					
+						
 					<li>		
 						<div class="main">
 							<button id="dialog">dialog</button>
 							<button id="juso">도로명 주소 API</button>
 							<button id="jsonTest">jsonTest</button>
-							<button id="fileUpload">FileUpload</button>
+							<!-- <button id="fileUpload">FileUpload</button> -->
 							<button id="weather">날씨 예보 API</button>
+							<!-- <button id="">POI EXCEL 업로드</button> -->
+							<button id="jsonValGet">재귀함수</button>
+							<!-- <button id=""></button> -->
 						</div>
 					</li>
 				</ul>

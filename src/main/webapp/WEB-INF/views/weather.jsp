@@ -12,99 +12,6 @@ function weatherSearch2(){
 	location.href="weatherSearch.do";
 }
 
-function resultVal(data){
-	var result = document.querySelector(".result");
-	var tr = document.createElement("tr");
-	var td = document.createElement("td");
-	var td2 = document.createElement("td");
-	
-	if(data.fcstDate === "20200418"){
-		td.innerText = JSON.stringify(data.fcstDate);
-		td2.innerText = JSON.stringify(data.category);
-	}
-	
-	tr.appendChild(td);
-	tr.appendChild(td2);
-	
-	result.appendChild(tr);
-	
-}
-
-function resultVal2(data){
-	const toDay = document.querySelector(".toDay");
-	
-	const div = document.querySelector(".resultVal");
-	const ul = document.createElement("ul");
-	const ui = document.createElement("li");
-	const valueDiv = document.createElement("div");
-	
-	let today = new Date();
-
-	let year = today.getFullYear();		// 현재 년도
-	let month = today.getMonth()+1;		// 현재 월
-	let date = today.getDate();			// 현재 일
-	let day = today.getDay();			// 현재 요일
-	let hours = today.getHours(); 		// 현재 시간
-	let minutes = today.getMinutes();  	// 현재 분
-	
-	if(date<10)	date = 0+""+date;
-	if(month<10) month = 0+""+month;
-	if(day === 0)  day = "SUN";
-	if(day === 1)  day = "MON";
-	if(day === 2)  day = "TUS";
-	if(day === 3)  day = "WED";
-	if(day === 4)  day = "THR";
-	if(day === 5)  day = "FRI";
-	if(day === 6)  day = "SAT";
-	
-	const toDays = year+". "+month+". "+date+". "+day;
-
-	toDay.innerText = toDays;
-
-	
-	
-	const category = data.category;
-	
-	//if(yyyymmdd === date1){
-		for(var i=0; i<data.fcstDate.length; i++){
-			if(category === "POP"){
-				/* ul.innerText = JSON.stringify(data.fcstDate);
-				span.innerText = JSON.stringify(data.fcstTime); */
-				valueDiv.innerText = "강수확률 "+data.fcstValue;
-				console.log("예보 날짜" + data.fcstDate);
-				console.log("예보 시간" + data.fcstTime);
-				console.log("강수확률 -> " + data.fcstValue);
-			} else if(category === "PTY"){
-				valueDiv.innerText = "강수형태" + data.fcstValue;
-				console.log("강수형태 -> " + data.fcstValue);
-			} else if(category === "REH"){
-				valueDiv.innerText = data.fcstValue;
-				console.log("습도 -> " + data.fcstValue);
-			} else if(category === "SKY"){
-				valueDiv.innerText = data.fcstValue;
-				console.log("날씨 -> " + data.fcstValue);
-			} else if(category === "T3H"){
-				valueDiv.innerText = data.fcstValue;
-				console.log("기온 -> " + data.fcstValue);
-			} else if(category === "TMN"){
-				valueDiv.innerText = data.fcstValue;
-				console.log("아침 최저기온 -> " + data.fcstValue);
-			} else if(category === "VEC"){
-				valueDiv.innerText = data.fcstValue;
-				console.log("풍향 -> " + data.fcstValue);
-			} else if(category === "WSD"){
-				valueDiv.innerText = data.fcstValue;
-				console.log("풍속 -> " + data.fcstValue);
-			}
-			ui.appendChild(valueDiv);
-		}
-	//}
-	
-	ul.appendChild(ui);
-
-	div.appendChild(ul);
-}
-
 function weatherSearch(){
 		$.ajax({
 			url : "weatherSearch.do",
@@ -112,13 +19,9 @@ function weatherSearch(){
 			dataType : "json",
 			data : $("#weather").serialize(),
 			success : function(jsonStr){
-				
 				var data = jsonStr.response.body.items.item;
-				
-				//console.log(data);
+				console.log(data);
 				data.forEach(function(val){
-			//		resultVal(val);
-					resultVal2(val);
 					});
 			},
 			error : function(e){
@@ -183,21 +86,6 @@ function weatherSearch(){
 		</ul>
 	</div>
 	
-	<!-- 
-	<table>
-		<thead>
-			<tr>
-				<th>예보날짜</th>
-				<th>예보시간</th>
-				<th>강수확률</th>
-				<th>강수형태</th>
-				<th>습도</th>
-				<th>날씨</th>
-				<th>기온</th>			
-			</tr>
-		</thead>
-		<tbody class="result"></tbody>
-	</table> -->
 </body>
 <%@ include file="common/footer.jsp" %>
 </html>

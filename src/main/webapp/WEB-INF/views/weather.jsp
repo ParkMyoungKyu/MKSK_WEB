@@ -15,6 +15,10 @@ function weatherVal(val){
 	const Tomorrow02 = new Date(Today.valueOf()+(48*60*60*1000));
 	const dateArr = [Today,Tomorrow01,Tomorrow02];
 
+	const div = document.createElement("div");
+	const li = document.createElement("li");
+	const ul = document.createElement("ul");
+	
 	for(var j = 0; j<dateArr.length; j++){
 		const year = dateArr[j].getFullYear();
 		const month = dateArr[j].getMonth()+1 < 10 ? "0" + (dateArr[j].getMonth()+1) : dateArr[j].getMonth()+1;
@@ -25,17 +29,20 @@ function weatherVal(val){
 		const minutes = Today.getMinutes() < 10 ? "0" + (Today.getMinutes()) : Today.getMinutes();
 	
 		const time = ['0000','0300','0600','0900','1200','1500','1800','2100'];
-	
-		var iVal = "";
-		if(02 <= hours && hours < 05)   iVal="2";
-	    if(05 <= hours && hours < 08)   iVal="3";
-	    if(08 <= hours && hours < 11)  	iVal="4";
-	    if(11 <=hours && hours < 14)  	iVal="5";
-	    if(14 <=hours && hours < 17)  	iVal="6";
-	    if(17 <=hours && hours < 20)  	iVal="7";
-	    if(20 <=hours && hours < 23)  	iVal="0";
-	    if(23 <=hours && hours < 02 || hours == 00)  iVal="1";
-	  
+
+		var iVal = "0";
+		
+		if(j===0){
+			if(02 <= hours && hours < 05)   iVal="2";
+		    if(05 <= hours && hours < 08)   iVal="3";
+		    if(08 <= hours && hours < 11)  	iVal="4";
+		    if(11 <=hours && hours < 14)  	iVal="5";
+		    if(14 <=hours && hours < 17)  	iVal="6";
+		    if(17 <=hours && hours < 20)  	iVal="7";
+		    if(20 <=hours && hours < 23)  	iVal="0";
+		    if(23 <=hours && hours < 02 || hours == 00)  iVal="1";
+		}
+		
 		for(var i = iVal; i<time.length; i++){
 			 console.log(searchDay +" " + time[i]);
 			if(val.weather[searchDay][time[i]].hasOwnProperty("POP")) var POP = val.weather[searchDay][time[i]].POP;  // 강수확률
@@ -48,7 +55,8 @@ function weatherVal(val){
 			if(val.weather[searchDay][time[i]].hasOwnProperty("VEC")) var VEC = val.weather[searchDay][time[i]].VEC;  // 풍향
 			if(val.weather[searchDay][time[i]].hasOwnProperty("WSD")) var WSD = val.weather[searchDay][time[i]].WSD;  // 풍속
 	
-			console.log(POP+" "+PTY+" "+REH+" "+SKY+" "+T3H+" "+TMN+" "+TMX+" "+VEC+" "+WSD);
+			console.log(i +" " +POP+" "+PTY+" "+REH+" "+SKY+" "+T3H+" "+TMN+" "+TMX+" "+VEC+" "+WSD);
+			
 		}
 	}
 }
@@ -93,6 +101,11 @@ function weatherSearch(){
 			</li>
 		</ul>
 		<ul class="weatherList" style="display: flex;">
+			<li>
+				<div></div>
+				<div></div>
+			</li>
+			
 			<li>
 				<div>03시</div>
 				<div>맑음</div>

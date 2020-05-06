@@ -46,15 +46,14 @@ public class WeatherController {
 	    	  weatherDto.setBase_date(format1.format(time));
 	    	  weatherDto.setBase_time("2300");
 	      }
-	      
 	      String serviceKey = "w7%2Fp3SnRp8NhmFmt1jm4Q8x1aKjZsP2k%2BnrLjesD3Ptag7iKvo2pDt8d4spRu%2Bm29XKt3mM1hfmUcKYqbi2F%2Fw%3D%3D";
 	      String numOfRows  = "300";
 	      String pageNo   = "1";
 	      String dataType   = "JSON";
 	      String base_date = weatherDto.getBase_date();
 	      String base_time = weatherDto.getBase_time(); // -- > 위에서 조건절로 설정예정   
-	      String nx   = "59";
-	      String ny   = "125";
+	      String nx   = weatherDto.getNx();
+	      String ny   = weatherDto.getNy();
 	      String URL = "http://apis.data.go.kr/1360000/VilageFcstInfoService/getVilageFcst?serviceKey="+serviceKey+"&numOfRows="+numOfRows+"&pageNo="+pageNo+"&dataType="+dataType+"&base_date="+base_date+"&base_time="+base_time+"&nx="+nx+"&ny="+ny;
 	      
 	      java.net.URL url = new java.net.URL(URL);

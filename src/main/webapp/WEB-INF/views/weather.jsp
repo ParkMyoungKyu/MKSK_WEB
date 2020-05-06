@@ -14,10 +14,8 @@ function weatherVal(val){
 	const Tomorrow01 = new Date(Today.valueOf()+(24*60*60*1000));
 	const Tomorrow02 = new Date(Today.valueOf()+(48*60*60*1000));
 	const dateArr = [Today,Tomorrow01,Tomorrow02];
-
-	const div = document.createElement("div");
-	const li = document.createElement("li");
-	const ul = document.createElement("ul");
+	
+	const weatherList = document.querySelector(".weatherList");
 	
 	for(var j = 0; j<dateArr.length; j++){
 		const year = dateArr[j].getFullYear();
@@ -44,7 +42,22 @@ function weatherVal(val){
 		}
 		
 		for(var i = iVal; i<time.length; i++){
-			 console.log(searchDay +" " + time[i]);
+			const DayDiv = document.createElement("div");
+			const TimeDiv = document.createElement("div");
+			
+			const POPDiv = document.createElement("div");
+			const PTYDiv = document.createElement("div");
+			const REHDiv = document.createElement("div");
+			const SKYDiv = document.createElement("div");
+			const T3HDiv = document.createElement("div");
+			const TMNDiv = document.createElement("div");
+			const TMXDiv = document.createElement("div");
+			const VECDiv = document.createElement("div");
+			const WSDDiv = document.createElement("div");
+			const ALLDiv = document.createElement("div");
+			
+			const li = document.createElement("li");
+			
 			if(val.weather[searchDay][time[i]].hasOwnProperty("POP")) var POP = val.weather[searchDay][time[i]].POP;  // 강수확률
 			if(val.weather[searchDay][time[i]].hasOwnProperty("PTY")) var PTY = val.weather[searchDay][time[i]].PTY;  // 강수형태
 			if(val.weather[searchDay][time[i]].hasOwnProperty("REH")) var REH = val.weather[searchDay][time[i]].REH;  // 습도
@@ -54,34 +67,107 @@ function weatherVal(val){
 			if(val.weather[searchDay][time[i]].hasOwnProperty("TMX")) var TMX = val.weather[searchDay][time[i]].TMX;  // 낮최고기온
 			if(val.weather[searchDay][time[i]].hasOwnProperty("VEC")) var VEC = val.weather[searchDay][time[i]].VEC;  // 풍향
 			if(val.weather[searchDay][time[i]].hasOwnProperty("WSD")) var WSD = val.weather[searchDay][time[i]].WSD;  // 풍속
-	
-			console.log(i +" " +POP+" "+PTY+" "+REH+" "+SKY+" "+T3H+" "+TMN+" "+TMX+" "+VEC+" "+WSD);
+
+			//console.log(searchDay +" " + time[i]);
+			//console.log(i +" " +POP+" "+PTY+" "+REH+" "+SKY+" "+T3H+" "+TMN+" "+TMX+" "+VEC+" "+WSD);
+
+			DayDiv.innerText = searchDay;	
+			TimeDiv.innerText = time[i];
+			POPDiv.innerText = POP+"%";
 			
+			if(PTY == 0) PTYDiv.innerText = "-";
+			if(PTY == 1) PTYDiv.innerText = "비";
+			if(PTY == 2) PTYDiv.innerText = "비/눈";
+			if(PTY == 3) PTYDiv.innerText = "눈";
+			if(PTY == 4) PTYDiv.innerText = "소나기";
+			
+			REHDiv.innerText = REH+"%";
+			
+			if(SKY == 1) SKYDiv.innerText = "맑음";
+			if(SKY == 2) SKYDiv.innerText = "구름조금";
+			if(SKY == 3) SKYDiv.innerText = "구름많음";
+			if(SKY == 4) SKYDiv.innerText = "흐림";
+			
+			T3HDiv.innerText = T3H+"°C";
+			TMNDiv.innerText = TMN+"°C";
+			TMXDiv.innerText = TMX+"°C";
+			
+			VEC = Math.floor((Number(VEC)+11.25)/22.5);
+ 			if(VEC == 0)  VECDiv.innerText = "북풍";
+	        if(VEC == 1 || VEC == 2 || VEC == 3)  VECDiv.innerText ="북동풍";
+	        if(VEC == 4)  VECDiv.innerText = "동풍";
+	        if(VEC == 5 || VEC == 6 || VEC == 7)  VECDiv.innerText ="남동풍";
+	        if(VEC == 8)  VECDiv.innerText = "남풍";
+	        if(VEC == 9 || VEC == 10 || VEC == 11)  VECDiv.innerText = "남서풍";
+	        if(VEC == 12) VECDiv.innerText = "서풍";
+	        if(VEC == 13 || VEC == 14 || VEC == 15)  VECDiv.innerText = "북서풍";
+	        if(VEC == 16) VECDiv.innerText = "북풍"; 
+	        
+			WSDDiv.innerText = WSD+"m/s";
+
+			ALLDiv.appendChild(DayDiv);
+			ALLDiv.appendChild(TimeDiv);
+			ALLDiv.appendChild(SKYDiv);
+			ALLDiv.appendChild(T3HDiv);
+			//ALLDiv.appendChild(TMNDiv);
+			//ALLDiv.appendChild(TMXDiv);
+			ALLDiv.appendChild(VECDiv);
+			ALLDiv.appendChild(WSDDiv);
+			ALLDiv.appendChild(POPDiv);
+			ALLDiv.appendChild(PTYDiv);
+			ALLDiv.appendChild(REHDiv);
+			
+			li.appendChild(ALLDiv);
+			
+			//li.appendChild(DayDiv);
+			//li.appendChild(TimeDiv);
+			//li.appendChild(SKYDiv);
+			//li.appendChild(T3HDiv);
+			//li.appendChild(TMNDiv);
+			//li.appendChild(TMXDiv);
+			//li.appendChild(VECDiv);
+			//li.appendChild(WSDDiv);
+			//li.appendChild(POPDiv);
+			//li.appendChild(PTYDiv);
+			//li.appendChild(REHDiv);
+			weatherList.appendChild(li);
 		}
 	}
+	return weatherList;
 }
 
 function weatherSearch(){
-		$.ajax({
-			url : "weatherSearch.do",
-			method : "post",
-			dataType : "json",
-			data : $("#weather").serialize(),
-			success : function(jsonStr){
-				weatherVal(jsonStr);				
-			},
-			error : function(e){
-				alert("날씨정보를 가져오지 못했습니다. Error("+ e +")");
-			}
-		});
-	}
+	const locCode = document.querySelector("#locCode").value;
+	const nxy = locCode.split(",");
+	const nx = nxy[0];
+	const ny = nxy[1];
+	
+	$.ajax({
+		url : "weatherSearch.do?nx="+nx+"&ny="+ny,
+		method : "post",
+		dataType : "json",
+		data : $("#weather").serialize(),
+		success : function(jsonStr){
+			const finalVal = weatherVal(jsonStr);
+			console.log(finalVal);
+		},
+		error : function(e){
+			alert("날씨정보를 가져오지 못했습니다. Error("+ e +")");
+		}
+	});
+}
 </script>
 </head>
 <%-- <%@ include file="common/header.jsp" %> --%>
 <body>
 	<div>날씨 정보 확인</div>
-	<form id="weather" name="weather">
-		<input type="button" value="날씨 확인" onclick="weatherSearch();">
+	<form id="weather" name="weather" action="javaScript:weatherSearch()">
+		<select id="locCode">
+			<option value="60,127">서울(종로구 사직동)</option>
+			<option value="98,76">부산(동래구 수민동)</option>
+		</select>
+		<!-- <input type="button" value="날씨 확인" onclick="weatherSearch();"> -->
+		<input type="submit" value="날씨 확인"  >
 	</form>	
 	
 	<div class="resultVal">	
@@ -93,47 +179,14 @@ function weatherSearch(){
 				<p>12:00 AM</p>
 			</li>
 			<li>
-				<span>17°C</span>
-				<span>12°C / 18°C</span>	
-				<span>구름</span>
-				<span>북동풍</span>
-				<span>20m/s</span>
+				<span>17°C(현재기온)</span>
+				<span>12°C / 18°C (금일최저기온 / 금일최고기온)</span>	
+				<span>구름 (날씨)</span>
+				<span>북동풍 (풍향)</span>
+				<span>20m/s (풍속)</span>
 			</li>
 		</ul>
-		<ul class="weatherList" style="display: flex;">
-			<li>
-				<div></div>
-				<div></div>
-			</li>
-			
-			<li>
-				<div>03시</div>
-				<div>맑음</div>
-				<div>13</div>
-				<div>북동풍 / 20m/s</div>
-				<div>0%</div>
-				<div>0</div>
-				<div>30%</div>
-			</li>
-			<li> 
-				<div>03시</div>
-				<div>맑음</div>
-				<div>13</div>
-				<div>북동풍 / 20m/s</div>
-				<div>0%</div>
-				<div>0</div>
-				<div>30%</div>
-			</li>
-			<li> 
-				<div>03시</div>
-				<div>맑음</div>
-				<div>13</div>
-				<div>북동풍 / 20m/s</div>
-				<div>0%</div>
-				<div>0</div>
-				<div>30%</div>
-			</li>
-		</ul>
+		<ul class="weatherList"></ul>
 	</div>
 	
 </body>

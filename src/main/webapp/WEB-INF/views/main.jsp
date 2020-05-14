@@ -74,8 +74,20 @@
 							<!-- <button id="fileUpload">FileUpload</button> -->
 							<button id="weather">날씨 예보 API</button>
 							<!-- <button id="">POI EXCEL 업로드</button> -->
-							<button id="jsonValGet">재귀함수</button>
-							<!-- <button id=""></button> -->
+							<button id="">버튼 test</button>
+							<button id="">버튼 test</button>
+							<button id="">버튼 test</button>
+							<button id="">버튼 test</button>
+							<button id="">버튼 test</button>
+							<button id="">버튼 test</button>
+							<button id="">버튼 test</button>
+							<button id="">버튼 test</button>
+							<button id="">버튼 test</button>
+							<button id="">버튼 test</button>
+							<button id="">버튼 test</button>
+							<button id="">버튼 test</button>
+							<button id="">버튼 test</button>
+							<button id="">버튼 test</button>
 						</div>
 					</li>
 				</ul>

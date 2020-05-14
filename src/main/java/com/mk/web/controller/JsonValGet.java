@@ -35,23 +35,36 @@ public class JsonValGet {
 			if(keyList.size() >= 1) {
 				// key 값 갯수만큼 for문 이동 (i번째 key값으로 해당 val 값 추출)
 				for(int i = 1; i<keyList.size(); i++) {
-					
+					String keyValue = keyList.get(i).toString();
 					System.out.println(keyList.get(i)); // key값 추출
-					
+					String type = obj.get(keyValue).getClass().getSimpleName();
 					// value 값 추출
 					// 01. value 타입을 가져온다??? { } / [ ] / " "
+					if("JSONObject".equals(type)) {
+						// value가 JSONObject 타입일 경우 // 배열일 경우 {  }
+						System.out.println("JSONObject type");
+						System.out.println("key 값 01 -> " + keyList.get(i).toString());
+						String jsonObjVal = obj.getJSONObject(keyValue).toString();
+
+						//다시 돌게끔
+						
+					}else if("JSONArray".equals(type)) {
+						// value가 JSONArray 타입일 경우 // 리스트일 경우 [ ]
+						System.out.println("JSONArray type");
+						System.out.println("key 값 02 -> " + keyList.get(i).toString());
+						
+					}else if("String".equals(type)) {
+						// value가 String 타입일 경우 // 일반데이터일 경우 " "
+						System.out.println("String type");
+						System.out.println("key 값 03 -> " + keyList.get(i).toString());
+						
+					}
 					
 					jsonVal = obj.getJSONObject(keyList.get(i)).getString(jsonVal);
 					
 					// value 가 일반데이터일 경우 / 배열일 경우 / 리스트일 경우로 나뉜다
 					
-					if(1==1) {
-						//리스트일 경우
-					} else if(2==2) {
-						//배열일 경우
-					} else if(3==3) {
-						// 일반데이터일 경우
-					}
+					
 				}
 			}
 			return factorial(jsonVal);

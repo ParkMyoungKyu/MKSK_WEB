@@ -9,6 +9,9 @@
 <link rel="stylesheet" href="css/weather.css" type="text/css">
 <script type="text/javascript">
 function weatherVal(val){
+	// 초기화
+	document.querySelector(".weatherList").innerText = "";
+
 	// 오늘 날짜 구하기 위한
 	const Today = new Date();
 	const Tomorrow01 = new Date(Today.valueOf()+(24*60*60*1000));
@@ -104,7 +107,7 @@ function weatherVal(val){
 	        if(VEC == 16) VECDiv.innerText = "북풍"; 
 	        
 			WSDDiv.innerText = WSD+"m/s";
-
+			
 			ALLDiv.appendChild(DayDiv);
 			ALLDiv.appendChild(TimeDiv);
 			ALLDiv.appendChild(SKYDiv);
@@ -119,17 +122,6 @@ function weatherVal(val){
 			
 			li.appendChild(ALLDiv);
 			
-			//li.appendChild(DayDiv);
-			//li.appendChild(TimeDiv);
-			//li.appendChild(SKYDiv);
-			//li.appendChild(T3HDiv);
-			//li.appendChild(TMNDiv);
-			//li.appendChild(TMXDiv);
-			//li.appendChild(VECDiv);
-			//li.appendChild(WSDDiv);
-			//li.appendChild(POPDiv);
-			//li.appendChild(PTYDiv);
-			//li.appendChild(REHDiv);
 			weatherList.appendChild(li);
 		}
 	}

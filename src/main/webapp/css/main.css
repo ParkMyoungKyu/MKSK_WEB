@@ -12,7 +12,13 @@ body{
 .rel-date{
 	font-size: 30px;
 	color: #30475e;
-	margin: 0 0 30px 0;
+	margin: 0 0 5px 0;
+}
+.js-weather{
+	color: #30475e;
+	font-family: 'Open Sans';
+	font-size : 18px;
+	font-weight: bold;
 }
 .form-Input{
 	font-weight: 900;
@@ -37,9 +43,9 @@ body{
     font-weight: 900;
     color: #fff;
     font-family: 'Open Sans', sans-serif;
-    width: 100px;
-    height: 100px;
-    border: 3px solid #fff;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #fff;
     border-radius: 100px;
     cursor: default;
     transition: .7s;
@@ -48,7 +54,7 @@ body{
     box-sizing: border-box;
     padding-left: 15px;
     outline: none;
-    font-size: 25px;
+    font-size: 20px;
     background: transparent;
 	
 }
@@ -130,7 +136,7 @@ button {
 }
 .active {
     width: 400px;
-    height: 50px;
-    border: 3px solid #fff;
-    border-radius: 15px;
+    height: 40px;
+    border: 2px solid #fff;
+    border-radius: 5px;
     margin-bottom: 20px;

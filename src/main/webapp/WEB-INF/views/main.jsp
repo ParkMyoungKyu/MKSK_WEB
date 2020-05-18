@@ -38,6 +38,9 @@
 		$("#jsonValGet").click(function(){
 			location.href = "menuMove.do?command=06"
 		});
+		$("#css01").click(function(){
+			location.href = "menuMove.do?command=07"
+		})
 		
 	});	
 </script>
@@ -75,7 +78,7 @@
 							<!-- <button id="fileUpload">FileUpload</button> -->
 							<button id="weather">날씨 예보 API</button>
 							<!-- <button id="">POI EXCEL 업로드</button> -->
-							<button id="">개별 css 연습</button>
+							<button id="css01">개별 css 연습</button>
 							<button id="">버튼 test</button>
 							<button id="">버튼 test</button>
 							<button id="">버튼 test</button>

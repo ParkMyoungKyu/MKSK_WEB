@@ -1,0 +1,35 @@
+div{
+	text-align: center;
+	background-color: #840000;
+}
+.s-link{
+	font-family: Roboto;
+	font-size: 50px;
+	line-height: normal;
+	color: #FFFFFF;
+	text-decoration: none;
+	position: relative;
+	transition : 250ms ease;
+}
+
+.s-link:hover{
+	color:#a488FF;
+}
+
+.s-link:hover::after{
+	right: -70px;
+}
+
+.s-link::after{
+	content: '';
+	background: url("../../images/a.jpg") no-repeat;
+	position : absolute;
+	background-position: center;
+	background-size: cover;
+	width: 50px;
+	height: 50px;
+	right: -60px;
+	top: 50%;
+	transform:translateY(-50%);
+	transition:250ms ease;
+}

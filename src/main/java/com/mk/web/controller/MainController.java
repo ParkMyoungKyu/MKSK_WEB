@@ -33,6 +33,7 @@ public class MainController {
 		else if ("04".equals(command)) move = "fileUpload";
 		else if ("05".equals(command)) move = "weather";
 		else if ("06".equals(command)) move = "jsonValGet";
+		else if ("07".equals(command)) move = "cssPtc";
 		
 		return move;
 	}

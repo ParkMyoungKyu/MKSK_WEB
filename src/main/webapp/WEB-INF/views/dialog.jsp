@@ -27,12 +27,16 @@
 		$("#btn").click(function(){
 			$("#dialog").dialog("open");
 		})
+
+		$("#cBtn").click(function(){
+			$("#dialog").dialog("close");
+		})
 	});
 
 		
 </script>
 </head>
-<%@ include file="common/header.jsp" %>
+<%-- <%@ include file="common/header.jsp" %> --%>
 <body>
 
 	<button id="btn">프로그래스 바 생성</button>
@@ -40,6 +44,8 @@
 		<p>테스트 중입니다....</p>
 		<div id="progressbar"></div>
 	</div>
+	
+	<button id="cBtn">프로그래스 바 close</button>
 </body>
 <%@ include file="common/footer.jsp" %>
 </html>

@@ -128,7 +128,9 @@ function weatherVal(val){
 	return weatherList;
 }
 
+
 function weatherSearch(){
+
 	const locCode = document.querySelector("#locCode").value;
 	const nxy = locCode.split(",");
 	const nx = nxy[0];

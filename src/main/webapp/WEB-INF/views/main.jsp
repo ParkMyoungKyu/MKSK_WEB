@@ -48,8 +48,9 @@
 			<div class="js-clock">
 				<h1 class="rel-time">00:00</h1>
 				<h3 class="rel-date"></h3>
+				<span class="js-weather"></span>
 			</div>
-			<span class="js-weather"></span>
+			
 			<div class="slider-wrapper">
 				<ul id="slider">
 					<li>
@@ -74,7 +75,7 @@
 							<!-- <button id="fileUpload">FileUpload</button> -->
 							<button id="weather">날씨 예보 API</button>
 							<!-- <button id="">POI EXCEL 업로드</button> -->
-							<button id="">버튼 test</button>
+							<button id="">개별 css 연습</button>
 							<button id="">버튼 test</button>
 							<button id="">버튼 test</button>
 							<button id="">버튼 test</button>

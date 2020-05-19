@@ -1,10 +1,25 @@
-.resultVal{
-	margin : 0 auto;
-	width : 1300px;
-	height : 700px;
-	background-color: #c0c0c0;
+.mainAll{
+	height: 750px;
+	display: flex;
+	margin: 5%;
+	min-height: 750px;
+	min-width: 1300px;
 }
-.resultVal li{
+.infoText{
+	width: 65%;
+	height: 100%;
+	background-color: #e8e8e8;
+}
+.imgLoc{
+	width: 35%;
+	height: 100%;
+	background-color: #ffffe1;
+}
+.weather{
+	text-align: center;
+}
+
+.nowWeather li{
 	list-style: none;
 }
 .weatherList{

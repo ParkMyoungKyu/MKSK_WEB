@@ -154,35 +154,36 @@ function weatherSearch(){
 </head>
 <%-- <%@ include file="common/header.jsp" %> --%>
 <body>
-	<div>날씨 정보 확인</div>
-	<form id="weather" name="weather" action="javaScript:weatherSearch()">
-		<select id="locCode">
-			<option value="60,127">서울(종로구 사직동)</option>
-			<option value="98,76">부산(동래구 수민동)</option>
-		</select>
-		<!-- <input type="button" value="날씨 확인" onclick="weatherSearch();"> -->
-		<input type="submit" value="날씨 확인"  >
-	</form>	
-	
-	<div class="resultVal">	
-		<ul class="nowWeather">
-			<li>
-				<span class="toDay">2020. 04. 28. Mon</span>	
-			</li>
-			<li>
-				<p>12:00 AM</p>
-			</li>
-			<li>
-				<span>17°C(현재기온)</span>
-				<span>12°C / 18°C (금일최저기온 / 금일최고기온)</span>	
-				<span>구름 (날씨)</span>
-				<span>북동풍 (풍향)</span>
-				<span>20m/s (풍속)</span>
-			</li>
-		</ul>
-		<ul class="weatherList"></ul>
-	</div>
-	
+	<div class="mainAll">
+		<div class="infoText">
+			<div>날씨 정보 확인</div>
+			<form id="weather" class="weather" name="weather" action="javaScript:weatherSearch()">
+				<select id="locCode">
+					<option value="60,127">서울(종로구 사직동)</option>
+					<option value="98,76">부산(동래구 수민동)</option>
+				</select>
+				<!-- <input type="button" value="날씨 확인" onclick="weatherSearch();"> -->
+				<input type="submit" value="날씨 확인"  >
+			</form>	
+			<ul class="nowWeather">
+				<li>
+					<span class="toDay">2020. 04. 28. Mon</span>	
+				</li>
+				<li>
+					<p>12:00 AM</p>
+				</li>
+				<li>
+					<span>17°C(현재기온)</span>
+					<span>12°C / 18°C (금일최저기온 / 금일최고기온)</span>	
+					<span>구름 (날씨)</span>
+					<span>북동풍 (풍향)</span>
+					<span>20m/s (풍속)</span>
+				</li>
+			</ul>
+			<ul class="weatherList"></ul>
+		</div>
+		<div class="imgLoc"></div>
+	</div>		
 </body>
-<%@ include file="common/footer.jsp" %>
+<%-- <%@ include file="common/footer.jsp" %> --%>
 </html>

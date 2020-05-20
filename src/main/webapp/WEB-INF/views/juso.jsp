@@ -107,7 +107,7 @@
 	
 </script>
 </head>
-<%@ include file="common/header.jsp" %>
+<%-- <%@ include file="common/header.jsp" %> --%>
 <body>
 
 	<form name="juso" id="juso" action="" method="post">

@@ -14,11 +14,6 @@ public class MainController {
 	
 	final Logger logger = LoggerFactory.getLogger(getClass());
 	
-	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public String login(Model model) {
-		return "loginForm";
-	}
-	
 	@RequestMapping(value = "main", method = RequestMethod.GET)
 	public String home(Model model) {
 		return "main";

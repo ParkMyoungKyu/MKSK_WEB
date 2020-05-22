@@ -1,7 +1,8 @@
-div{
+.motion{
 	text-align: center;
 	background-color: #840000;
 }
+
 .s-link{
 	font-family: Roboto;
 	font-size: 50px;
@@ -32,4 +33,38 @@ div{
 	top: 50%;
 	transform:translateY(-50%);
 	transition:250ms ease;
+}
+.textBoxAll{
+	text-align: center;
+}
+
+.s-box{
+	display:inline-block;
+	width:400px;
+	height:50px;
+	margin: 10px;
+	background: #007FF4;
+	border-radius: 8px;
+	padding: 20px;
+	color: white;
+	font-family: Roboto, arial;
+	transition: 250ms ease;
+	filter:blur(0px);
+	-webkit-filter:blur(0px);
+	cursor: pointer;
+}
+
+.blur{
+	filter : blur(10px);
+	-webkit-filter:blur(10px);
+}
+
+.title{
+	margin-top: 0;
+	margin-bottom: 16px;
+}
+
+.contents{
+	margin-top: 0;
+	margin-bottom: 0;
 }

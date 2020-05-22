@@ -1,17 +1,24 @@
 package com.mk.web.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mk.web.dto.UserInfoDTO;
+import com.mk.web.service.ILoginService;
 
 @Controller
 public class LoginController {
 
+	@Autowired
+	private ILoginService iLoginService;
+	
 	final Logger logger = LoggerFactory.getLogger(getClass());
 	
 	@RequestMapping(value = "login")
@@ -33,8 +40,8 @@ public class LoginController {
 	
 	@RequestMapping(value = "signUpSubmit", method = RequestMethod.POST)
 	public String signUpSubmit(UserInfoDTO userInfoDTO, Model model) {
-		
-		return "redirect:/login.do";
+		iLoginService.signUpSubmit(userInfoDTO);
+		return "login/signUp";
 	}
 	
 }

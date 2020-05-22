@@ -1,7 +1,5 @@
 package com.mk.web.controller;
 
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;

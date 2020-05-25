@@ -16,8 +16,11 @@
 
 	<!-- Processes application requests -->
 	<servlet>
+		<!-- servlet-class를 appServlet 이라는 이름으로 사용하겠다 -->
 		<servlet-name>appServlet</servlet-name>
+		<!-- 어떤 class를 갖고 DispatcherServlet을 구현할지 명시 -->
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- servlet에 대한 설정 정보(초기화 파라메타 정보) -->
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
@@ -25,6 +28,7 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 		
+	<!-- do로 끝나는 패턴이 들어올 경우 appServlet이름을 갖고 있는 servlet에게 던진다 --> 		
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>*.do</url-pattern>

@@ -14,7 +14,6 @@ public class LoginDao implements ILoginDao {
 	
 	@Override
 	public int signUpSubmit(UserInfoDTO userInfoDTO) {
-		
 		return session.insert("signUp",userInfoDTO);
 	}
 

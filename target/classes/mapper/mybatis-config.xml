@@ -5,12 +5,14 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="UserInfo" type="com.mk.web.dto.UserInfoDTO"/>
-		<!-- <typeAlias alias="Weather" type="com.mk.web.dto.WeatherDTO"/>
-		<typeAlias alias="Juso" type="com.mk.web.dto.JusoDTO"/> -->
+		<typeAlias alias="Weather" type="com.mk.web.dto.WeatherDTO"/>
+		<typeAlias alias="Juso" type="com.mk.web.dto.JusoDTO"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mapper/UserInfo.xml"/>
+		<mapper resource="mapper/Weather.xml"/>
+		<mapper resource="mapper/Juso.xml"/>
 	</mappers>
 
 </configuration>

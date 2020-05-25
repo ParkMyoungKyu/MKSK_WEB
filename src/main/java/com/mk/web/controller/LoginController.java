@@ -1,7 +1,5 @@
 package com.mk.web.controller;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +14,10 @@ import com.mk.web.service.ILoginService;
 @Controller
 public class LoginController {
 
+	final Logger logger = LoggerFactory.getLogger(getClass());
+	
 	@Autowired
 	private ILoginService iLoginService;
-	
-	final Logger logger = LoggerFactory.getLogger(getClass());
 	
 	@RequestMapping(value = "login")
 	public String loginFrom(Model model	) {

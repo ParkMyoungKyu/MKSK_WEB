@@ -5,9 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>MKSK_WEB | 회원가입</title>
+<script type="text/javascript">
+</script>
 </head>
 <body>
-	<form action="signUpSubmit.do" method="post">
+	<form name="signUp" action="signUpSubmit.do" method="post">
 		<div>로고 위치</div>
 		<label>ID : </label>
 		<input type="text" name="u_id"><button type="button" onclick="checkId">중복확인</button>

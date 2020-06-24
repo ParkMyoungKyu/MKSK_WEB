@@ -17,4 +17,11 @@ public class LoginService implements ILoginService {
 		return iLoginDao.signUpSubmit(userInfoDTO);
 	}
 
+	@Override
+	public int checkId(UserInfoDTO userInfoDTO) {
+		int result = iLoginDao.checkId(userInfoDTO);
+		System.out.println("Service result 값 " + result);
+		return result;
+	}
+
 }

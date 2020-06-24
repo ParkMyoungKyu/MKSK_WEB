@@ -6,4 +6,6 @@ public interface ILoginDao {
 
 	int signUpSubmit(UserInfoDTO userInfoDTO);
 
+	int checkId(UserInfoDTO userInfoDTO);
+
 }

@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 	<mapper namespace="UserInfo">
 		<insert id="signUp">
-			insert into userinfo(u_gbn)
-			values ('2')
+			insert into userinfo(u_gbn,u_id,u_pw,u_name,u_gender,u_num,u_tel_no,u_email,u_join_date,u_login_date)
+			values ('2',#{u_id},#{u_pw},#{u_name},#{u_gender},#{u_num},#{u_tel_no},#{u_email},to_char(sysdate,'yyyymmdd'),'')
 		</insert>
+		
+		<select id="checkId" resultType = "Integer">
+			select count(*) 
+			from userinfo
+			where u_id = #{u_id}
+		</select>
 	</mapper>

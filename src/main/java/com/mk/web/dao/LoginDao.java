@@ -17,4 +17,12 @@ public class LoginDao implements ILoginDao {
 		return session.insert("signUp",userInfoDTO);
 	}
 
+	@Override
+	public int checkId(UserInfoDTO userInfoDTO) {
+		System.out.println("DAO 까지 성공");
+		int result = session.selectOne("checkId",userInfoDTO);
+		System.out.println("result 값 " + result);
+		return result;
+	}
+
 }

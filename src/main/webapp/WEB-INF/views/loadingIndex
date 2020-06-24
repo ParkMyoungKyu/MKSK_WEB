@@ -1,0 +1,38 @@
+=====  Dom tree  =====
+
+
+jsp 로드시 로딩 순서
+
+<import java ~~~~~>       ->>>>>>   1번 java 파일을 import 한다
+
+<%
+						  ->>>>>>   2번 DB 접속해서 값을 가져오는 소스
+%>
+
+<html>					  ->>>>>>   3번 
+	<head>				  ->>>>>>   4번 
+		<meta charset="UTF-8">   ->>>>>>   5번 
+		<link ~>				 ->>>>>>   6번 
+		<css 태그>				 ->>>>>>   7번 
+	</head>							
+	<body onload=''>			 ->>>>>>   8번 body 태그 
+								 ->>>>>>   9번 body 태그의  onload(body를 다 읽고 난 후)
+	</body>
+		<javascript 태그> -> head 안에 넣으면 랜더링을 멈추가 js 를 읽기 때문에
+</html>
+
+
+기본 순서
+1. import javafile
+2. <%   %> DB에서 가져오는 소스들
+3. HTML 태그
+4. <head> 태그
+     -> css 링크 선언이나 js 링크 선언을 주로 하며(링크 순서도 css 다음 js링크순)
+        자바스크립트 기입시 css와 충돌될수 있으며 그점을 주의하며 사용할것
+     (로딩과 동시해 실행되는 스크립트를 기입하면 좋음)
+5. <body> 태그
+6. <body onload> body에 있는 onload  ex) <body onload = "JS함수">
+7. window.onload    ->     ex) window.onload = function(){----}
+        ---> window.onload 는 body onload 실행시 실행이 안되므로 적절히 사용해야됨
+        ---> <body onload = "example()">
+         ex) <script>function example(){-----------}</script>

@@ -18,8 +18,8 @@
 				<div>PW : <input type="password" placeholder="password"></div>
 				<div><input type="submit" value="login"></div>
 			</form>
-			<span><button type="button" onclick="idSearch">ID 찾기</button></span>
-			<span><button type="button" onclick="pwSearch">PW 찾기</button></span>
+			<span><button type="button" onclick="location.href = 'idSearch.do'">ID 찾기</button></span>
+			<span><button type="button" onclick="location.href = 'pwSearch.do'">PW 찾기</button></span>
 			<span><button type="button" onclick="location.href = 'signUp.do'">회원가입</button></span>
 		</div>
 	</div>

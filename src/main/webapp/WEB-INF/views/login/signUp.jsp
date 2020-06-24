@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>MKSK_WEB | 회원가입</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 
 	function pwChk(){
@@ -32,8 +33,35 @@
 	}
 	
 	function submit(){
+		
 		var singUpForm = document.signUp;
 
+		if(singUpForm.u_id.value === ""){
+			alert("아이디를 입력해주세요");
+			return;
+		}else if(singUpForm.u_pw.value === ""){
+			alert("비밀번호를 입력해주세요");
+			return;
+		}else if(singUpForm.u_name.value === ""){
+			alert("이름을 입력해주세요");
+			return;
+		}else if(singUpForm.u_gender.value === ""){
+			alert("성별을 체크해주세요");
+			return;
+		}else if(singUpForm.btdY.value === "" || singUpForm.btdM.value === "" || singUpForm.btdD.value === ""){
+			alert("생년월일을 정확히 입력해주세요");
+			return;
+		}else if(singUpForm.u_pw.value === ""){
+			alert("주소를 입력해주세요");
+			return;
+		}else if(singUpForm.phoneNum1.value === "" || singUpForm.phoneNum2.value === "" || singUpForm.phoneNum3.value === "" ){
+			alert("핸드폰번호를 정확히 입력해주세요");
+			return;
+		}else if(singUpForm.emailFront.value === "" || singUpForm.emailBack.value === ""){
+			alert("이메일을 입력해주세요");
+			return;
+		}
+		
 		var u_num =singUpForm.btdY.value+singUpForm.btdM.value+singUpForm.btdD.value; 
 		var u_tel_no = singUpForm.phoneNum1.value + singUpForm.phoneNum2.value + singUpForm.phoneNum3.value;
 		var u_email = singUpForm.emailFront.value+"@"+singUpForm.emailBack.value;
@@ -43,19 +71,47 @@
 		singUpForm.u_email.value = u_email;
 		
 		singUpForm.action = "signUpSubmit.do";
-		singUpForm.submit();
+		//singUpForm.submit();
+	}
+
+	function checkId(){
+		
+		var singUpForm = document.signUp;
+		var userId = singUpForm.u_id.value;
+		
+		if(singUpForm.u_id.value === ""){
+			alert("아이디를 입력 후 확인바랍니다");
+			return;
+		}
+		 
+		$.ajax({
+			url : "checkId.do",
+			type : "post",
+			dataType : "text",
+			data : {"u_id":singUpForm.u_id.value},
+			success : function(data){
+				if(data === "1"){
+					alert("이미 가입되어있는 아이디입니다");
+					singUpForm.u_id.value = "";
+				}else if(data === "0"){
+					alert("가입 가능한 아이디입니다");
+				}
+			},
+			error : function (e){
+				alert(e);
+			}
+		})
 	}
 </script>
 </head>
 <body>
 	<form name="signUp" method="post">
-	<!-- action="signUpSubmit.do -->
 		<input type="hidden" name="u_num" value="">
 		<input type="hidden" name="u_tel_no" value="">
 		<input type="hidden" name="u_email" value="">
 		<div>로고 위치</div>
 		<label>ID : </label>
-		<input type="text" name="u_id"><button type="button">중복확인</button>
+		<input type="text" name="u_id"><button type="button" onclick="checkId()">중복확인</button>
 		<div>PW : <input type="password" name="u_pw"></div>
 		<div onchange="pwChk();">PW 확인 :<input type="password" name="pwChk" ><a class="chkText"></a></div>
 		<div>이름 : <input type="text" name="u_name"></div>
@@ -65,6 +121,18 @@
 		<div>생년월일 : 
 			<input type="text" name="btdY" class="btdY" placeholder="년" maxlength="4">
 			<input type="text" name="btdM" class="btdM" placeholder="월" maxlength="2">
+			<select name="btdY">
+				<option value="">년</option>
+				<% for(int i=1990; i<2020; i++){	%><option value="<%=i%>"><%=i%></option><%} %>
+			</select>
+			<select name="btdM">
+				<option value="">월</option>
+				<% for(int i=1; i<12; i++){	%><option value="<%=i%>"><%=i%></option><%} %>
+			</select>
+			<select name="btdD">
+				<option value="">일</option>
+				<% for(int i=1; i<32; i++){	%><option value="<%=i%>"><%=i%></option><%} %>
+			</select>
 			<input type="text" name="btdD" class="btdD" placeholder="일" maxlength="2">
 		</div>
 		<div>

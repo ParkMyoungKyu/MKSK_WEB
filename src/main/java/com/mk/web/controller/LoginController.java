@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mk.web.dto.UserInfoDTO;
 import com.mk.web.service.ILoginService;
@@ -38,20 +39,17 @@ public class LoginController {
 	
 	@RequestMapping(value = "signUpSubmit", method = RequestMethod.POST)
 	public String signUpSubmit(UserInfoDTO userInfoDTO, Model model) {
-		System.out.println("1 " + userInfoDTO.getU_id());		
-		System.out.println("2 " + userInfoDTO.getU_pw());		
-		System.out.println("3 " + userInfoDTO.getU_name());		
-		System.out.println("4 " + userInfoDTO.getU_gender());		
-		System.out.println("5 " + userInfoDTO.getU_num());		
-		System.out.println("6 " + userInfoDTO.getU_tel_no());		
-		System.out.println("7 " + userInfoDTO.getU_email());		
 		iLoginService.signUpSubmit(userInfoDTO);
 		return "login/loginForm";
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "checkId")
-	public String checkId(UserInfoDTO userInfoDTO, Model model) {
-		System.out.println("id check");
-		return "";
+	public int checkId(UserInfoDTO userInfoDTO, Model model) {
+		System.out.println(userInfoDTO.getU_id());
+		int result = iLoginService.checkId(userInfoDTO);
+		System.out.println("Controller result 값 " + result);
+		return result;
 	}
+
 }

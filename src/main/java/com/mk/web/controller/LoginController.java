@@ -38,8 +38,20 @@ public class LoginController {
 	
 	@RequestMapping(value = "signUpSubmit", method = RequestMethod.POST)
 	public String signUpSubmit(UserInfoDTO userInfoDTO, Model model) {
+		System.out.println("1 " + userInfoDTO.getU_id());		
+		System.out.println("2 " + userInfoDTO.getU_pw());		
+		System.out.println("3 " + userInfoDTO.getU_name());		
+		System.out.println("4 " + userInfoDTO.getU_gender());		
+		System.out.println("5 " + userInfoDTO.getU_num());		
+		System.out.println("6 " + userInfoDTO.getU_tel_no());		
+		System.out.println("7 " + userInfoDTO.getU_email());		
 		iLoginService.signUpSubmit(userInfoDTO);
-		return "login/signUp";
+		return "login/loginForm";
 	}
 	
+	@RequestMapping(value = "checkId")
+	public String checkId(UserInfoDTO userInfoDTO, Model model) {
+		System.out.println("id check");
+		return "";
+	}
 }

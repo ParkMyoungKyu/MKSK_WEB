@@ -4,7 +4,8 @@
   
 	<mapper namespace="UserInfo">
 		<insert id="signUp">
-			insert into userinfo(u_gbn)
-			values ('2')
+			insert into userinfo(u_gbn,u_id,u_pw,u_name,u_gender,u_num,u_tel_no,u_email,u_join_date,u_login_date)
+			values ('2',#{u_id},#{u_pw},#{u_name},#{u_gender},#{u_num},#{u_tel_no},#{u_email},to_char(sysdate,'yyyymmdd'),'')
+			
 		</insert>
 	</mapper>
